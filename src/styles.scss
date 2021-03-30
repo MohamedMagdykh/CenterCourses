@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~animate.css/animate.css";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss';
+
+.multiselect-dropdown
+{
+    .dropdown-btn
+    {
+        outline-style: none !important;
+
+    }
+
+}

@@ -1,0 +1,183 @@
+
+<article class="content ">
+  <section class="hero-wrap hero-wrap-2" style="background-image: url('../../../assets/aboutUs.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+              <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+                    <h1 class="mb-2 bread RegisterH2">Expression Of Interest</h1>
+                    <p class="breadcrumbs">
+                        <span class="mr-2">
+                                <a routerLink="">
+                                    Home <i class="fas fa-angle-right"></i>
+                                </a>
+                        </span>
+                        <span>Expression Of Interest <i class="fas fa-angle-right"></i> </span>
+                    </p>
+             </div>
+        </div>
+    </div>
+</section>
+<div class="aside">
+
+</div>
+    <section class="s1 ">
+     
+            <div class="Expression-Of-Interest">
+              <form >
+                  <div class="text-center">
+                    <i class="far fa-user"></i>
+                    <h1  class="text-center RegisterH">Expression Of Interest</h1>
+                  </div>
+     
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                    <label for="name" >Frist Name<span class="text-lightBlue">.</span></label>
+                    <input type="text" placeholder="Frist Name" class="form-control" id="Frist name" name="name" >
+                    </div>
+                    <div class="form-group col-lg-6">
+                    <!-- <label for="email" >Email<span class="text-lightBlue">.</span></label>
+                    <input type="email" class="form-control" id="email" name="email" > -->
+                    <label for="name" >Last Name<span class="text-lightBlue">.</span></label>
+                    <input type="text" placeholder="Last Name" class="form-control" id="Last name" name="name" >
+                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                    <label for="e-mail">E-mail<span class="text-lightBlue">.</span></label>
+                    <input type="email"  placeholder="E-mail"  class="form-control" id="e-mail" name="e-mail">
+                    </div>
+                   
+                </div>
+         
+                <div >
+                    <label for="Country">Phone Number<span class="text-lightBlue">.</span></label>
+                    <div class="row" >
+                        <div class="form-group col-lg-4">
+                        <input type="tel" placeholder="Code" class="form-control" id="Code" name="Code">
+                        </div>
+                        <div class="form-group col-lg-8">
+                            <input type="tel" placeholder="Phone Number" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
+                </div>
+                <div >
+                  <label for="Country">Number Of Child<span class="text-lightBlue">.</span></label>
+                  <div class="row" >
+                      <div class="form-group col-lg-12">
+                        <select class="form-control" [(ngModel)]="numberChild" (change)="numSequence()" name="numberChild" aria-label="Default select example">
+                          <option disabled selected>Number Of Children</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
+                <div class="row  content-child" *ngIf="checkNumberChilds == true">
+                <div class="col-md-5 infoStudent" *ngFor="let item of numSequence() let i = index;">
+                  <h2 class="childHead text-center">Child {{i + 1}}</h2>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                    <label for="name">Student Frist Name<span class="text-lightBlue">.</span></label>
+                    <input type="text"  placeholder="Student Frist Name"  class="form-control" id="namechild{{i}}" name="namechild{{i}}">
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                    <label for="name" >Academic Year<span class="text-lightBlue">.</span></label>
+                    <select class="form-control" id="AcademicYear{{i}}"  aria-label="Default select example">
+                        <option selected>Choose Year</option>
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                        <option value="5">Year 5</option>
+                        <option value="6">Year 6</option>
+                        <option value="7">Year 7</option>
+                        <option value="8">Year 8</option>
+                        <option value="9">Year 9</option>
+                        <option value="10">Year 10</option>
+                        <option value="11">Year 11</option>
+                        <option value="12">Year 12</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-6">
+                    <label for="Subject" >Subject<span class="text-lightBlue">.</span></label>
+                    <select class="form-control" id="Subject{{i}}"  name="Subject"  aria-label="Default select example">
+                        <option selected>Choose Subject </option>
+                        <option value="1">Mathematics</option>
+                        <option value="2">Science</option>
+                        <option value="3">Biology</option>
+                        <option value="4">Physics</option>
+                      </select>
+                    
+                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                    <label for="name" >Prefarred Days<span class="text-lightBlue">.</span></label>
+                    <ng-multiselect-dropdown class="checkBoxSelection" 
+                    [placeholder]="'Choose Day'"
+                    [settings]="dropdownSettings2"
+                    [data]="days"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    name="days"
+                    id="Day{{i}}"
+                    >
+                    </ng-multiselect-dropdown>
+                   
+                    </div>
+                    <div class="form-group col-lg-12">
+                    <label for="name" >Prefarred Time<span class="text-lightBlue">.</span></label>
+                    <ng-multiselect-dropdown class="checkBoxSelection" 
+                    [placeholder]="'Choose Time'"
+                    [settings]="dropdownSettings"
+                    [data]="time"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    name="time"
+                    id="time{{i}}"
+                    >
+                    </ng-multiselect-dropdown>
+                   
+                
+                    
+                    
+                    </div>
+                </div>
+              </div>
+              </div>
+          
+                <div class="form-group">
+                  <label for="message">Comments<span class="text-lightBlue">.</span></label>
+                  <textarea class="form-control" rows="4" id="message" name="message"></textarea>
+                </div>
+                <div class="large-24 columns">
+                    <input type="checkbox" name="rgpd-check-2[]" id="rgpd-check-2-1"  class="politiqueConfidentialiteCheck" value="rgpd-checked"><label class="politiqueConfidentialiteCheckLabel" for="rgpd-check-2-1">Subscribe To Marketing E-mails</label>
+                    </div>
+                <div class="form-group text-center">
+                  <button class="btn start-project-btn text-white form-control" (click)="infoChilds()"   style=" background-color: #5fcfdf">Send</button>
+                </div>
+             
+              </form>
+            </div>
+         
+
+    </section>
+
+</article>
+

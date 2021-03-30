@@ -1,0 +1,76 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AboutUsComponent } from './AllComponents/about-us/about-us.component';
+import { ChangePassComponent } from './AllComponents/Auth/change-pass/change-pass.component';
+import { ForgetPassComponent } from './AllComponents/Auth/forget-pass/forget-pass.component';
+import { LoginComponent } from './AllComponents/Auth/login/login.component';
+import { RegisterComponent } from './AllComponents/Auth/register/register.component';
+import { ContactUsComponent } from './AllComponents/contact-us/contact-us.component';
+import { CoursesComponent } from './AllComponents/courses/courses.component';
+import { ExpressionOfInterestComponent } from './AllComponents/expression-of-interest/expression-of-interest.component';
+import { HomeComponent } from './AllComponents/home/home.component';
+import { InstructorLessonsComponent } from './AllComponents/Profiles/Instructor/instructor-lessons/instructor-lessons.component';
+import { InstructorProfileComponent } from './AllComponents/Profiles/Instructor/instructor-profile/instructor-profile.component';
+import { InstructorSideBarComponent } from './AllComponents/Profiles/Instructor/instructor-side-bar/instructor-side-bar.component';
+import { ParentComponent } from './AllComponents/Profiles/parent/parent.component';
+import { EditeProfileComponent } from './AllComponents/Profiles/Student/edite-profile/edite-profile.component';
+import { LessonsComponent } from './AllComponents/Profiles/Student/lessons/lessons.component';
+import { SaveVideoComponent } from './AllComponents/Profiles/Student/save-video/save-video.component';
+import { SideBarComponent } from './AllComponents/Profiles/Student/side-bar/side-bar.component';
+
+const routes: Routes = [
+  { path: '',             component: HomeComponent },
+  { path: 'contactUs',             component: ContactUsComponent },
+  { path: 'ExpressionOfInterest',             component: ExpressionOfInterestComponent },
+  { path: 'AboutUs',             component: AboutUsComponent },
+  { path: 'login',             component: LoginComponent },
+  { path: 'register',             component: RegisterComponent },
+  { path: 'forgetPass',             component: ForgetPassComponent },
+  { path: 'changePass',             component: ChangePassComponent },
+  { path: 'student',             component: SideBarComponent ,
+   children: [
+    {
+      path: 'LessonsChild', 
+      component: LessonsComponent, 
+    },
+    {
+      path: 'editeProfile',  
+      component: EditeProfileComponent, 
+    },
+    {
+      path: 'saveVideo', 
+      component: SaveVideoComponent, 
+    }
+
+  ],
+  },
+  { path: 'instructor',             component: InstructorSideBarComponent ,
+  children: [
+   {
+     path: 'LessonsInstructor', 
+     component: InstructorLessonsComponent, 
+   },
+   {
+     path: 'editeProfileInstructor',  
+     component: InstructorProfileComponent, 
+   },
+
+ ],
+ },
+ { path: 'Parent',             component: ParentComponent },
+ { path: 'Course',             component: CoursesComponent },
+
+
+];
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes),
+    RouterModule.forChild(routes)
+  ],
+  exports: [RouterModule]
+})
+
+export class AppRoutingModule { 
+  
+
+}

@@ -40,10 +40,9 @@ export class HomeComponent implements OnInit {
       },
       nav: false
     }
+    document.getElementById('footer').style.width= "100%"
+    document.getElementById('footer').style.marginLeft= "0%"
   }
-  test()
-  {
-    console.log("test")
-  }
+
 
 }

@@ -100,6 +100,8 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.wowService.init();
+    document.getElementById('footer').style.width= "100%"
+    document.getElementById('footer').style.marginLeft= "0%"
   }
   addCard(id)
   {

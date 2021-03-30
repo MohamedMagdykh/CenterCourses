@@ -62,7 +62,8 @@ export class ExpressionOfInterestComponent implements OnInit {
       { item_id: 13, item_text: '8 BM' }
 
     ];
- 
+    document.getElementById('footer').style.width= "100%"
+    document.getElementById('footer').style.marginLeft= "0%"
     
    
 

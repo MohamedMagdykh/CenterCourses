@@ -2227,6 +2227,8 @@
               },
               nav: false
             };
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
           }
         }]);
 
@@ -3392,7 +3394,10 @@
 
         _createClass(LoginComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
+          }
         }]);
 
         return LoginComponent;
@@ -5412,11 +5417,8 @@
               },
               nav: false
             };
-          }
-        }, {
-          key: "test",
-          value: function test() {
-            console.log("test");
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
           }
         }]);
 
@@ -7335,7 +7337,10 @@
 
         _createClass(ForgetPassComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
+          }
         }]);
 
         return ForgetPassComponent;
@@ -7882,6 +7887,8 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.wowService.init();
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
           }
         }, {
           key: "addCard",
@@ -8779,6 +8786,8 @@
               item_id: 13,
               item_text: '8 BM'
             }];
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
           }
         }, {
           key: "onItemSelect",
@@ -9457,7 +9466,10 @@
 
         _createClass(RegisterComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
+          }
         }]);
 
         return RegisterComponent;
@@ -9764,7 +9776,10 @@
 
         _createClass(ContactUsComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            document.getElementById('footer').style.width = "100%";
+            document.getElementById('footer').style.marginLeft = "0%";
+          }
         }]);
 
         return ContactUsComponent;

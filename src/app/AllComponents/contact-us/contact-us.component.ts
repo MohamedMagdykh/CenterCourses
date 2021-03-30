@@ -10,6 +10,8 @@ export class ContactUsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.getElementById('footer').style.width= "100%"
+    document.getElementById('footer').style.marginLeft= "0%"
   }
 
 }

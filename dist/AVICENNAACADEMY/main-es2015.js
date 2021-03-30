@@ -1116,6 +1116,8 @@ class AboutUsComponent {
             },
             nav: false
         };
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 AboutUsComponent.ɵfac = function AboutUsComponent_Factory(t) { return new (t || AboutUsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_wow__WEBPACK_IMPORTED_MODULE_1__["NgwWowService"])); };
@@ -1685,6 +1687,8 @@ const _c0 = function () { return { "padding-top.%": "5" }; };
 class LoginComponent {
     constructor() { }
     ngOnInit() {
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(); };
@@ -2692,9 +2696,8 @@ class HomeComponent {
             },
             nav: false
         };
-    }
-    test() {
-        console.log("test");
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_wow__WEBPACK_IMPORTED_MODULE_1__["NgwWowService"])); };
@@ -3616,6 +3619,8 @@ const _c0 = function () { return { "width.%": "80", "margin-left": "auto", "marg
 class ForgetPassComponent {
     constructor() { }
     ngOnInit() {
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 ForgetPassComponent.ɵfac = function ForgetPassComponent_Factory(t) { return new (t || ForgetPassComponent)(); };
@@ -3919,6 +3924,8 @@ class CoursesComponent {
     }
     ngOnInit() {
         this.wowService.init();
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
     addCard(id) {
         for (let i = 0; i < this.subjects.length; i++) {
@@ -4367,6 +4374,8 @@ class ExpressionOfInterestComponent {
             { item_id: 12, item_text: '7 BM' },
             { item_id: 13, item_text: '8 BM' }
         ];
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
     onItemSelect(item) {
         console.log(item);
@@ -4738,6 +4747,8 @@ __webpack_require__.r(__webpack_exports__);
 class RegisterComponent {
     constructor() { }
     ngOnInit() {
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 RegisterComponent.ɵfac = function RegisterComponent_Factory(t) { return new (t || RegisterComponent)(); };
@@ -4886,6 +4897,8 @@ __webpack_require__.r(__webpack_exports__);
 class ContactUsComponent {
     constructor() { }
     ngOnInit() {
+        document.getElementById('footer').style.width = "100%";
+        document.getElementById('footer').style.marginLeft = "0%";
     }
 }
 ContactUsComponent.ɵfac = function ContactUsComponent_Factory(t) { return new (t || ContactUsComponent)(); };

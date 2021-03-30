@@ -44,6 +44,8 @@ export class AboutUsComponent implements OnInit {
       },
       nav: false
     }
+    document.getElementById('footer').style.width= "100%"
+    document.getElementById('footer').style.marginLeft= "0%"
     
 
    }

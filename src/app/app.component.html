@@ -17,6 +17,19 @@
                 <li class="nav-item"><a [routerLink]="['ExpressionOfInterest']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Expression Of Interest</a></li>
                 <li class="nav-item"><a  [routerLink]="['Course']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Courses & Pricing</a></li>
                 <li class="nav-item"><a  class="nav-link MQNav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['contactUs']">Contact Us</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profiles
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/student/LessonsChild']" >Student</a>
+                    <a class="dropdown-item" [routerLink]="['/instructor/LessonsInstructor']">Instructor</a>
+                    <a class="dropdown-item"[routerLink]="['Parent']">Parent</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item">LogOut</a>
+                   
+                  </div>
+                </li>
             </ul>
             <button class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
               Login

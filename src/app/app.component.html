@@ -7,34 +7,34 @@
       <div class="container d-flex align-items-center" [ngStyle]="{'width.%': '100','max-width.%': '95'}" >
            <a class="navbar-brand" [ngStyle]="{'width.%': '20'}">  <img [ngStyle]="{'width.%': '100','background-size': 'cover','background-repeat': 'no-repeat'}" class="logo" src="../assets/logo.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
+            <span class="navbar-toggler-icon"></span> 
           </button>
           
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto" [ngStyle]="{'margin-right': 'auto'}">
-                <li class="nav-item"><a  [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link MQNav-link">Home</a></li>
-                <li class="nav-item "><a  [routerLink]="['AboutUs']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link MQNav-link">About Us</a></li>
-                <li class="nav-item"><a [routerLink]="['ExpressionOfInterest']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Expression Of Interest</a></li>
-                <li class="nav-item"><a  [routerLink]="['Course']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Courses & Pricing</a></li>
-                <li class="nav-item"><a  class="nav-link MQNav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['contactUs']">Contact Us</a></li>
+                <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link MQNav-link">Home</a></li>
+                <li class="nav-item " aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  [routerLink]="['AboutUs']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link MQNav-link">About Us</a></li>
+                <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a [routerLink]="['ExpressionOfInterest']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Expression Of Interest</a></li>
+                <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  [routerLink]="['Course']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Courses & Pricing</a></li>
+                <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  class="nav-link MQNav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['contactUs']">Contact Us</a></li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profiles
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="['/student/LessonsChild']" >Student</a>
-                    <a class="dropdown-item" [routerLink]="['/instructor/LessonsInstructor']">Instructor</a>
-                    <a class="dropdown-item"[routerLink]="['Parent']">Parent</a>
+                    <a aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="dropdown-item" [routerLink]="['/student/LessonsChild']" >Student</a>
+                    <a  aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" class="dropdown-item" [routerLink]="['/instructor/LessonsInstructor']">Instructor</a>
+                    <a aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="dropdown-item"[routerLink]="['Parent']">Parent</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">LogOut</a>
+                    <a  aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" class="dropdown-item">LogOut</a>
                    
                   </div>
                 </li>
             </ul>
-            <button class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
+            <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
               Login
             </button>
-            <button class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
+            <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
               Register
             </button>
           </div>

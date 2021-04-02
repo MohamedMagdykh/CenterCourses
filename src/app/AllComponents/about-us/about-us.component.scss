@@ -90,7 +90,7 @@
 }
 .ftco-intro 
 {
-  background-image: url('/../../assets/teacherStudents.jpeg');
+  background-image: url('../../../assets/teacherStudents.jpeg');
   background-attachment: fixed;
   // background-position: 50% -84px;
   padding: 8em 0;
@@ -98,7 +98,7 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: 100% 100%;
   position: relative;
   color: rgba(255, 255, 255, 0.8);
   .overlay 
@@ -371,5 +371,8 @@
     width: 100% !important;
   }
 
-
+  .ftco-intro 
+  {
+    background: #070c2cfa !important;
+  }
 }     

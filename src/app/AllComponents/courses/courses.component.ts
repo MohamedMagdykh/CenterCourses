@@ -48,7 +48,7 @@ export class CoursesComponent implements OnInit {
     {
       id:"5",
       name:"english",
-      photo:"../../../assets/english.jpg",
+      photo:"../../../assets/english2.jpg",
       describe:"Some text to describe the course etc...",
       price:33,
       visable:true

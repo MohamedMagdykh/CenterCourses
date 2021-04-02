@@ -262,7 +262,7 @@
     }
     .ftco-intro 
 {
-  background-image: url('/../../assets/teacherStudents.jpeg');
+  background-image: url('../../../assets/teacherStudents.jpeg');
   background-attachment: fixed;
   // background-position: 50% -84px;
   padding: 8em 0;
@@ -270,7 +270,7 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: 100% 100%;
   position: relative;
   color: rgba(255, 255, 255, 0.8);
   .overlay 
@@ -364,6 +364,7 @@
         background-repeat: no-repeat;
         // background-position: 100% 100%;
         background-size: 100% 100%;
+        object-fit: cover;
         }
         .text
          {
@@ -685,7 +686,7 @@
         }  
         .justify-content-center2 
         {
-            width: 190px !important;
+            width: 140px !important;
         }
         .ftco-intro
         {
@@ -715,5 +716,8 @@
         {
           width: 100% !important;
         }
-        
+        .ftco-intro 
+        {
+          background: #070c2cfa !important;
+        }
     }

@@ -22,36 +22,47 @@
 
 </div>
     <section class="s1 ">
-     
+      
             <div class="Expression-Of-Interest">
-              <form >
+              
                   <div class="text-center">
                     <i class="far fa-user"></i>
                     <h1  class="text-center RegisterH">Expression Of Interest</h1>
                   </div>
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
      
-                <div class="row">
+                <div class="row" >
                     <div class="form-group col-lg-6">
                     <label for="name" >Frist Name<span class="text-lightBlue">.</span></label>
-                    <input type="text" placeholder="Frist Name" class="form-control" id="Frist name" name="name" >
+                    <input type="text"  formControlName="firstName" placeholder="Frist Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" class="form-control" id="Frist name" name="name" >
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                  </div>
                     </div>
                     <div class="form-group col-lg-6">
                     <!-- <label for="email" >Email<span class="text-lightBlue">.</span></label>
                     <input type="email" class="form-control" id="email" name="email" > -->
                     <label for="name" >Last Name<span class="text-lightBlue">.</span></label>
-                    <input type="text" placeholder="Last Name" class="form-control" id="Last name" name="name" >
+                    <input type="text" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name" class="form-control" id="Last name" name="name" >
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                  </div>
                     
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-12">
                     <label for="e-mail">E-mail<span class="text-lightBlue">.</span></label>
-                    <input type="email"  placeholder="E-mail"  class="form-control" id="e-mail" name="e-mail">
+                    <input  formControlName="email" type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="E-mail"  class="form-control" id="e-mail" name="e-mail">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
                     </div>
                    
                 </div>
          
-                <div >
+                <div>
                     <label for="Country">Phone Number<span class="text-lightBlue">.</span></label>
                     <div class="row" >
                         <div class="form-group col-lg-4">
@@ -66,7 +77,7 @@
                   <label for="Country">Number Of Child<span class="text-lightBlue">.</span></label>
                   <div class="row" >
                       <div class="form-group col-lg-12">
-                        <select class="form-control" [(ngModel)]="numberChild" (change)="numSequence()" name="numberChild" aria-label="Default select example">
+                        <select class="form-control" [(ngModel)]="numberChild" [ngModelOptions]="{standalone: true}" (change)="numSequence()" name="numberChild" aria-label="Default select example">
                           <option disabled selected>Number Of Children</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -170,11 +181,13 @@
                     <input type="checkbox" name="rgpd-check-2[]" id="rgpd-check-2-1"  class="politiqueConfidentialiteCheck" value="rgpd-checked"><label class="politiqueConfidentialiteCheckLabel" for="rgpd-check-2-1">Subscribe To Marketing E-mails</label>
                     </div>
                 <div class="form-group text-center">
-                  <button class="btn start-project-btn text-white form-control" (click)="infoChilds()"   style=" background-color: #5fcfdf">Send</button>
+                  <button class="btn start-project-btn text-white form-control" (click)="infoChilds()" type="submit"  style=" background-color: #5fcfdf">Send</button>
                 </div>
              
               </form>
             </div>
+
+       
          
 
     </section>

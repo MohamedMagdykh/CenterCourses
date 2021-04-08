@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IDropdownSettings} from 'ng-multiselect-dropdown';
 
 @Component({
@@ -14,11 +15,14 @@ export class ExpressionOfInterestComponent implements OnInit {
   time = [];
   selectTime = [];
   numberChild = "Number Of Children"
+
   checkNumberChilds = false
+  registerForm: FormGroup;
+  submitted = false;
   
   
  
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.dropdownSettings= {
       singleSelection: false,
       idField: 'item_id',
@@ -37,6 +41,18 @@ export class ExpressionOfInterestComponent implements OnInit {
       itemsShowLimit:3,
       allowSearchFilter: true
     };
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone:
+       {
+        code: ['', Validators.required,Validators.maxLength(4), Validators.minLength(4)],
+        number: ['', Validators.required, Validators.minLength(9)],
+
+       }
+     
+  })
    }
 
   ngOnInit(): void {
@@ -99,6 +115,17 @@ export class ExpressionOfInterestComponent implements OnInit {
     }
     console.log(infochilds)
   }
+  get f() { return this.registerForm.controls; }
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
+    }
+
+    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+}
  
 
 

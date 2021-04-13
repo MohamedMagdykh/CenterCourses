@@ -36,8 +36,8 @@ export class ExpressionOfInterestComponent implements OnInit {
       singleSelection: false,
       idField: 'item_id2',
       textField: 'item_text2',
-      selectAllText: 'Select All2',
-      unSelectAllText: 'UnSelect All2',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
       itemsShowLimit:3,
       allowSearchFilter: true
     };
@@ -57,9 +57,13 @@ export class ExpressionOfInterestComponent implements OnInit {
 
   ngOnInit(): void {
    this.days = [
-      { item_id2: 1, item_text2: 'Saturday - Tuesday' },
-      { item_id2: 2, item_text2: 'Sunday - Wednesday' },
-      { item_id2: 3, item_text2: 'Monday - Thursday' },
+      { item_id2: 1, item_text2: 'Saturday' },
+      { item_id2: 2, item_text2: 'Sunday' },
+      { item_id2: 3, item_text2: 'Monday' },
+      { item_id2: 4, item_text2: 'Tuesday ' },
+      { item_id2: 5, item_text2: 'Wednesday' },
+      { item_id2: 6, item_text2: 'Thursday' },
+      { item_id2: 7, item_text2: 'Friday' }
 
     ];
     this.time = [

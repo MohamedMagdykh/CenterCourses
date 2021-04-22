@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IDropdownSettings} from 'ng-multiselect-dropdown';
 
 @Component({
@@ -14,11 +14,12 @@ export class ExpressionOfInterestComponent implements OnInit {
   dropdownSettings2:IDropdownSettings;
   time = [];
   selectTime = [];
-  numberChild = "Number Of Children"
+  numberChild = 1
 
   checkNumberChilds = false
   registerForm: FormGroup;
   submitted = false;
+  
   
   
  
@@ -41,45 +42,48 @@ export class ExpressionOfInterestComponent implements OnInit {
       itemsShowLimit:3,
       allowSearchFilter: true
     };
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone:
-       {
-        code: ['', Validators.required,Validators.maxLength(4), Validators.minLength(4)],
-        number: ['', Validators.required, Validators.minLength(9)],
 
-       }
+
+      this.registerForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email,Validators.pattern('.*com$')]],
+        phone:['', [Validators.required,Validators.pattern('[0-9]*')]],
+        numberChild:['', Validators.required],
+        comment:[''],
+        numberChildren:this.formBuilder.array([]) 
+      
+        
+    })
+
      
-  })
    }
 
+   get numberChildren() : FormArray {
+    
+    return this.registerForm.get("numberChildren") as FormArray
+  }
+
+  newchild(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', Validators.required],
+      PreferredDays: ['', Validators.required],
+      Subject: ['', Validators.required],
+      AcademicYear: ['', Validators.required],
+      PreferredTime: ['', Validators.required],
+    })
+  }
+
+ 
   ngOnInit(): void {
    this.days = [
-      { item_id2: 1, item_text2: 'Saturday' },
-      { item_id2: 2, item_text2: 'Sunday' },
-      { item_id2: 3, item_text2: 'Monday' },
-      { item_id2: 4, item_text2: 'Tuesday ' },
-      { item_id2: 5, item_text2: 'Wednesday' },
-      { item_id2: 6, item_text2: 'Thursday' },
-      { item_id2: 7, item_text2: 'Friday' }
-
+     "Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"
     ];
     this.time = [
-      { item_id: 1, item_text: '8 AM' },
-      { item_id: 2, item_text: '9 AM' },
-      { item_id: 3, item_text: '10 AM' },
-      { item_id: 4, item_text: '11 AM' },
-      { item_id: 5, item_text: '12 AM' },
-      { item_id: 6, item_text: '1 BM' },
-      { item_id: 7, item_text: '2 BM' },
-      { item_id: 8, item_text: '3 BM' },
-      { item_id: 9, item_text: '4 BM' },
-      { item_id: 10, item_text: '5 BM' },
-      { item_id: 11, item_text: '6 BM' },
-      { item_id: 12, item_text: '7 BM' },
-      { item_id: 13, item_text: '8 BM' }
+      '8 AM' ,
+      '9 AM' ,
+      '10 AM' ,
+ '11 AM' ,
 
     ];
     document.getElementById('footer').style.width= "100%"
@@ -88,37 +92,24 @@ export class ExpressionOfInterestComponent implements OnInit {
    
 
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-  numSequence() { 
-   
-    var Childs: number = +this.numberChild;
-    this.checkNumberChilds = true
-    return Array(Childs); 
 
-  } 
-  infoChilds()
+  numformgroupValdiation()
   {
-    var Childs: number = +this.numberChild
-    
- 
-    var infochilds = []
-    for (let i = 0; i < Childs; i++) {
-      infochilds.push({
-        "name":document.getElementById("namechild"+i)
-
-      })
-      
-
-      
-      
+    var Childs: number = +(<HTMLInputElement>document.getElementById("numberChildren")).value;
+    this.numberChild = Childs
+    while (this.numberChildren.length !== 0) {
+      this.numberChildren.removeAt(0)
     }
-    console.log(infochilds)
+    for (let i = 0; i < Childs; i++) {
+      this.numberChildren.push(this.newchild());
+    }
+    this.numformschildren()
   }
+  numformschildren() { 
+    this.checkNumberChilds = true
+    return Array(this.numberChild); 
+  } 
+
   get f() { return this.registerForm.controls; }
   onSubmit() {
     this.submitted = true;
@@ -127,8 +118,28 @@ export class ExpressionOfInterestComponent implements OnInit {
     if (this.registerForm.invalid) {
         return;
     }
+   
+   
+    var dataFormCome  = this.registerForm.value
+  
+  
+     var dataFormGo =
+    { 
+      "firstName":dataFormCome.firstName ,
+        "lastName":dataFormCome.lastName ,
+        "email":dataFormCome.email ,
+        "phone":dataFormCome.phone,
+        "numberChild":dataFormCome.numberChild,
+        "comment":dataFormCome.comment,
+         
+       
 
-    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+    }
+
+
+
+    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(dataFormCome) )
+    console.log(dataFormCome )
 }
  
 

@@ -56,16 +56,16 @@
                     <input  formControlName="email" type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="E-mail"  class="form-control" id="e-mail" name="e-mail">
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                       <div *ngIf="f.email.errors.required">Email is required</div>
-                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                      <div *ngIf="f.email.errors.email || f.email.errors.pattern">Email must be a valid email address</div>
                     </div>
                     </div>
                     <div class="form-group col-lg-6">
                       <label for="Country">Mobile Number </label>
-                     
-                        
-                          <div class="form-group ">
-                              <input type="tel" placeholder="Mobile Number" class="form-control" id="phone" name="phone">
-                          </div>
+                      <input  formControlName="phone" type="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"  placeholder="Mobile Number"  class="form-control" id="phone" name="phone">
+                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required">Mobile Number  is required</div>
+                        <div *ngIf="f.phone.errors.pattern">Mobile Number  Must Be Only Numbers</div>
+                      </div>
                       
                   </div>
                    
@@ -73,11 +73,11 @@
          
             
                 <div >
-                  <label for="Country">Number Of Child </label>
+                  <label for="Country">Number Of Children </label>
                   <div class="row" >
                       <div class="form-group col-lg-12">
-                        <select class="form-control" [(ngModel)]="numberChild" [ngModelOptions]="{standalone: true}" (change)="numSequence()" name="numberChild" aria-label="Default select example">
-                          <option disabled selected>Number Of Children</option>
+                        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numberChild.errors }"  id="numberChildren" formControlName="numberChild" (change)="numformgroupValdiation()" name="numberChild" aria-label="Default select example">
+                          <option value="" disabled selected hidden>Number Of Children</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -91,24 +91,37 @@
                           <option value="11">11</option>
                           <option value="12">12</option>
                         </select>
+                        <div *ngIf="submitted && f.numberChild.errors" class="invalid-feedback">
+                          <div *ngIf="f.numberChild.errors.required">Enter Your Children</div>
+                        </div>
+
                       </div>
                   </div>
               </div>
-                <div class="row  content-child" *ngIf="checkNumberChilds == true">
-                <div class="col-md-5 infoStudent" *ngFor="let item of numSequence() let i = index;">
+                <div  *ngIf="checkNumberChilds == true">
+                  <div class="row  content-child" formArrayName="numberChildren">
+                <div class="col-md-5 infoStudent"  *ngFor="let item of numberChildren.controls let i = index;">
+                  <div [formGroupName]="i">
+                
                   <h2 class="childHead text-center">Child {{i + 1}}</h2>
                 <div class="row">
                     <div class="form-group col-lg-12">
                     <label for="name">Student Frist Name </label>
-                    <input type="text"  placeholder="Student Frist Name"  class="form-control" id="namechild{{i}}" name="namechild{{i}}">
+                    <input type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('name').errors?.required }"   placeholder="Student Frist Name"  class="form-control" id="namechild{{i}}" name="namechild{{i}}">
+                    <div *ngIf="submitted && numberChildren.controls[i].get('name').errors?.required" class="invalid-feedback">
+                      <div *ngIf="numberChildren.controls[i].get('name').errors?.required">Name is required</div>
+                     </div>
+                     
+                     
+                 
                     </div>
                    
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6">
                     <label for="name" >Academic Year </label>
-                    <select class="form-control" id="AcademicYear{{i}}"  aria-label="Default select example">
-                        <option selected>Choose Year</option>
+                    <select class="form-control" formControlName="AcademicYear" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('AcademicYear').errors?.required }"   id="AcademicYear{{i}}"  aria-label="Default select example">
+                        <option value="" disabled selected hidden>Choose Year</option>
                         <option value="1">Year 1</option>
                         <option value="2">Year 2</option>
                         <option value="3">Year 3</option>
@@ -122,65 +135,74 @@
                         <option value="11">Year 11</option>
                         <option value="12">Year 12</option>
                       </select>
+                      <div *ngIf="submitted && numberChildren.controls[i].get('AcademicYear').errors?.required" class="invalid-feedback">
+                        <div *ngIf="numberChildren.controls[i].get('AcademicYear').errors?.required">Name is required</div>
+                       </div>
                     </div>
                     <div class="form-group col-lg-6">
                     <label for="Subject" >Subject </label>
-                    <select class="form-control" id="Subject{{i}}"  name="Subject"  aria-label="Default select example">
-                        <option selected>Choose Subject </option>
-                        <option value="1">Mathematics</option>
-                        <option value="2">Science</option>
-                        <option value="3">Biology</option>
-                        <option value="4">Physics</option>
+                    <select formControlName="Subject" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('Subject').errors?.required }"  class="form-control" id="Subject{{i}}"  name="Subject"  aria-label="Default select example">
+                        <option value="" disabled selected hidden>Choose Subject </option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Science">Science</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Physics">Physics</option>
                       </select>
-                    
-                    
+                      <div *ngIf="submitted && numberChildren.controls[i].get('Subject').errors?.required" class="invalid-feedback">
+                        <div *ngIf="numberChildren.controls[i].get('Subject').errors?.required">Name is required</div>
+                       </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-12">
-                    <label for="name" >Prefarred Days </label>
-                    <ng-multiselect-dropdown class="checkBoxSelection" 
+                    <label for="name" >Preferred Days </label>
+                    <ng-multiselect-dropdown formControlName="PreferredDays" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('PreferredDays').errors?.required }"   class="checkBoxSelection" 
                     [placeholder]="'Choose Day'"
                     [settings]="dropdownSettings2"
                     [data]="days"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)"
                     name="days"
                     id="Day{{i}}"
                     >
                     </ng-multiselect-dropdown>
+                    <div *ngIf="submitted && numberChildren.controls[i].get('PreferredDays').errors?.required" class="invalid-feedback">
+                      <div *ngIf="numberChildren.controls[i].get('PreferredDays').errors?.required">Name is required</div>
+                     </div>
                    
                     </div>
                     <div class="form-group col-lg-12">
-                    <label for="name" >Prefarred Time </label>
-                    <ng-multiselect-dropdown class="checkBoxSelection" 
+                    <label for="name" >Preferred Time </label>
+                    <ng-multiselect-dropdown formControlName="PreferredTime" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('PreferredTime').errors?.required }"  class="checkBoxSelection" 
                     [placeholder]="'Choose Time'"
                     [settings]="dropdownSettings"
                     [data]="time"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)"
                     name="time"
                     id="time{{i}}"
                     >
                     </ng-multiselect-dropdown>
+                    <div *ngIf="submitted && numberChildren.controls[i].get('PreferredTime').errors?.required" class="invalid-feedback">
+                      <div *ngIf="numberChildren.controls[i].get('PreferredTime').errors?.required">Name is required</div>
+                     </div>
                    
                 
                     
                     
                     </div>
                 </div>
+               
               </div>
+            </div>
+            </div>
               </div>
           
                 <div class="form-group">
                   <label for="message">Comments </label>
-                  <textarea class="form-control" rows="4" id="message" name="message"></textarea>
+                  <textarea formControlName="comment"  class="form-control" rows="4" id="message" name="message"></textarea>
                 </div>
                 <div class="large-24 columns">
-                    <input type="checkbox" name="rgpd-check-2[]" id="rgpd-check-2-1"  class="politiqueConfidentialiteCheck" value="rgpd-checked"><label class="politiqueConfidentialiteCheckLabel" for="rgpd-check-2-1">Subscribe To AVICENNA Academy comms</label>
+                  <input type="checkbox"   class="politiqueConfidentialiteCheck" ><label class="politiqueConfidentialiteCheckLabel" for="rgpd-check-2-1">Subscribe To AVICENNA Academy comms</label>
                     </div>
                 <div class="form-group text-center">
-                  <button class="btn start-project-btn text-white form-control" (click)="infoChilds()" type="submit"  style=" background-color: #5fcfdf">Send</button>
+                  <button class="btn start-project-btn text-white form-control"  type="submit"  style=" background-color: #5fcfdf">Send</button>
                 </div>
              
               </form>

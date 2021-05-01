@@ -12,9 +12,11 @@ export class ExpressionOfInterestComponent implements OnInit {
   selectedDays = [];
   dropdownSettings:IDropdownSettings;
   dropdownSettings2:IDropdownSettings;
+  dropdownSettings3:IDropdownSettings;
   time = [];
   selectTime = [];
-  numberChild = 1
+  Subject = [];
+  numberChild = 1;
 
   checkNumberChilds = false
   registerForm: FormGroup;
@@ -37,6 +39,15 @@ export class ExpressionOfInterestComponent implements OnInit {
       singleSelection: false,
       idField: 'item_id2',
       textField: 'item_text2',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit:3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings3= {
+      singleSelection: false,
+      idField: 'item_id3',
+      textField: 'item_text3',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit:3,
@@ -85,6 +96,11 @@ export class ExpressionOfInterestComponent implements OnInit {
       '10 AM' ,
  '11 AM' ,
 
+    ];
+    this.Subject = [
+      'Mathematics' ,
+      'Science' ,
+      'Biology' ,
     ];
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"

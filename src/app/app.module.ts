@@ -26,6 +26,11 @@ import { InstructorSideBarComponent } from './AllComponents/Profiles/Instructor/
 import { InstructorLessonsComponent } from './AllComponents/Profiles/Instructor/instructor-lessons/instructor-lessons.component';
 import { InstructorProfileComponent } from './AllComponents/Profiles/Instructor/instructor-profile/instructor-profile.component';
 import { ParentComponent } from './AllComponents/Profiles/parent/parent.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { CommonModule } from '@angular/common';
+
+
   
 
 @NgModule({
@@ -48,6 +53,8 @@ import { ParentComponent } from './AllComponents/Profiles/parent/parent.componen
     InstructorLessonsComponent,
     InstructorProfileComponent,
     ParentComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -59,6 +66,10 @@ import { ParentComponent } from './AllComponents/Profiles/parent/parent.componen
     BrowserAnimationsModule,
     CarouselModule,
     ShowHidePasswordModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    CommonModule
+
 
     
   ],

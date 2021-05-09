@@ -17,7 +17,7 @@
                 <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a [routerLink]="['ExpressionOfInterest']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Expression Of Interest</a></li>
                 <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  [routerLink]="['Course']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="nav-link MQNav-link">Courses & Pricing</a></li>
                 <li class="nav-item" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" ><a  class="nav-link MQNav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['contactUs']">Contact Us</a></li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profiles
                   </a>
@@ -29,14 +29,28 @@
                     <a  aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" class="dropdown-item">LogOut</a>
                    
                   </div>
-                </li>
+                </li> -->
             </ul>
-            <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
+            <button *ngIf="checkLog =='false'" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
               Login
             </button>
-            <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
+            <button *ngIf="checkLog =='false'" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
               Register
             </button>
+            <li class="nav-item dropdown" style="color: rgb(7, 12, 44);line-height: 10px;" *ngIf="checkLog =='true'">
+              <h5 class="nav-link nameuser dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{NameUser}}
+              </h5>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a aria-controls="ftco-nav" *ngIf="typeUser =='child'"  aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="dropdown-item" [routerLink]="['/student/LessonsChild']" >Student</a>
+                <a  aria-controls="ftco-nav" *ngIf="typeUser =='instructor'"  aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" class="dropdown-item" [routerLink]="['/instructor/LessonsInstructor']">Instructor</a>
+                <a aria-controls="ftco-nav" *ngIf="typeUser =='Parent'"  aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="dropdown-item"[routerLink]="['Parent']">Parent</a>
+                <div class="dropdown-divider"></div>
+                <a  aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse" (click)="log_Out()" class="dropdown-item">LogOut</a>
+               
+              </div>
+            </li>
+
           </div>
       </div>
   </nav> 

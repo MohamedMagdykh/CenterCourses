@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forget-pass',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgetPassComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"
+    if( localStorage.getItem("login")== "true"  )
+    {
+      this.router.navigate([''])
+    }
   }
 
 }

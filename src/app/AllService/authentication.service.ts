@@ -13,7 +13,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient,public toastr: ToastrManager,private router:Router) { }
   Register(data) :Observable<any>
   {
-    return this.http.post( ConceptsService.Domain_Url + 'api/register',data,
+    return this.http.post( ConceptsService.Domain_Url + 'auth/register',data,
     {
        headers:ConceptsService.getHeader()
     }).pipe(
@@ -31,21 +31,141 @@ export class AuthenticationService {
     )
   }
 
-  LogIn(data) :Observable<any>
+  LogIn(mail,pass) :Observable<any>
   {
-    return this.http.post(ConceptsService.Domain_Url + 'api/login',data,
+    var data = {
+      "email":mail,
+      "password":pass,
+      "remember_me":1
+
+    }
+    return this.http.post(ConceptsService.Domain_Url + 'auth/login',data,
     {
        headers:ConceptsService.getHeader()
     }).pipe(
       map((res:any)=>
         {
-          this.toastr.successToastr(res.message)
+          this.toastr.successToastr("LogIn")
+          console.log(res.data)
+          if(res.data==undefined || res.data=="undefined")
+          {
+            if(res.role_passport == "instructor")
+            {
+              localStorage.setItem("type",res.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.first_name)  
+              localStorage.setItem("mail",res.email) 
+              localStorage.setItem("actviation",res.is_verified)  
+             
+              
+              setTimeout(() => {
+                this.router.navigate([''])
+  
+              }, 1000);
+             
+            }
+            if(res.role_passport == "student")
+            {
+              localStorage.setItem("type",res.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.first_name)  
+              localStorage.setItem("mail",res.email) 
+              localStorage.setItem("actviation",res.is_verified)  
+             
+              
+              setTimeout(() => {
+                this.router.navigate([''])
+  
+              }, 1000);
+             
+            }
+            if(res.role_passport == "parent")
+            {
+              localStorage.setItem("type",res.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.first_name)  
+              localStorage.setItem("mail",res.email) 
+              localStorage.setItem("actviation",res.is_verified)  
+             
+              
+              setTimeout(() => {
+                this.router.navigate([''])
+  
+              }, 1000);
+             
+            }
+       
+        
+            // if(res.is_verified == 0)
+            // {
+            //   setTimeout(() => {
+            //     document.getElementById("ActivationAcountbtn").click();
+  
+            //   }, 500);
+  
+            // }
+          }
+          else
+          {
+            if(res.data.user.role_passport == "instructor")
+            {
+              localStorage.setItem("type",res.data.user.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.data.user.first_name)  
+              localStorage.setItem("mail",res.data.user.email) 
+              localStorage.setItem("actviation",res.data.user.is_verified)  
+              localStorage.setItem("token","Bearer "+res.data.access_token)
+              console.log(res.data.access_token)
+              
+              setTimeout(() => {
+                this.router.navigate(['instructor/LessonsInstructor'])
+  
+              }, 1000);
+             
+            }
+            if(res.data.user.role_passport == "parent")
+            {
+              localStorage.setItem("type",res.data.user.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.data.user.first_name)  
+              localStorage.setItem("mail",res.data.user.email) 
+              localStorage.setItem("actviation",res.data.user.is_verified) 
+  
+              localStorage.setItem("token","Bearer "+res.data.access_token)
+              console.log(res.data.access_token)
+              setTimeout(() => {
+                this.router.navigate(['Parent'])
+  
+                
+              }, 1000);
+            }
+            if(res.data.user.role_id == "student")
+            {
+              localStorage.setItem("type", res.data.user.role_passport)
+              localStorage.setItem("login","true")
+              localStorage.setItem("NameUser",res.data.user.first_name)  
+              localStorage.setItem("mail",res.data.user.email) 
+              localStorage.setItem("actviation",res.data.user.is_verified)  
+             
+              localStorage.setItem("token","Bearer "+res.data.access_token)
+              console.log(res.data.access_token)
+              setTimeout(() => {
+                this.router.navigate(['student/LessonsChild'])
+  
+                
+              }, 1499);
+            }
+          }
+        
+          
+       
+         
           setTimeout(() => {
             window.location.reload()
           }, 1500);
           
-          // console.log(res)
-         return res.data;
+          
+         return res;
 
         }),
         catchError((error: Response) => {
@@ -56,11 +176,90 @@ export class AuthenticationService {
        
     )
   }
+  activate_user(code) :Observable<any>
+  {
+    var data =
+    {
+      "temp":code,
+      "email":localStorage.getItem("mail")
+    }
+    return this.http.post( ConceptsService.Domain_Url + 'auth/activate_user',data,
+    {
+       headers:ConceptsService.getHeader()
+    }).pipe(
+      map((res:any)=>
+      
+        {
+
+          this.toastr.successToastr("Account Has Been Activated")
+          localStorage.setItem("token","Bearer "+res.data.access_token)
+          if(localStorage.getItem("type") == "instructor")
+          {
+            localStorage.setItem("actviation","1")  
+              this.router.navigate(['instructor/LessonsInstructor'])
+
+          }
+          if(localStorage.getItem("type") == "parent")
+          {
+            localStorage.setItem("actviation","1")  
+              this.router.navigate(['Parent'])
+
+          }
+          if(localStorage.getItem("type") == "student")
+          {
+            localStorage.setItem("actviation","1")  
+              this.router.navigate(['student/LessonsChild'])
+
+          }
+      
+          setTimeout(() => {
+            document.getElementById("ActivationAcountbtn").click();
+
+          }, 500);
+          console.log(res)
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
+  resend_activate() :Observable<any>
+  {
+    console.log(localStorage.getItem("mail"))
+    return this.http.post( ConceptsService.Domain_Url + 'auth/resend_activation',localStorage.getItem("mail"),
+    {
+       headers:ConceptsService.getHeader()
+    }).pipe(
+      map(res=>
+        {
+          this.toastr.successToastr("Code Sent to Your Mail")
+          setTimeout(() => {
+            document.getElementById("closeResendCodeModel").click();  
+        
+          }, 500);
+       
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
   LogOut() :Observable<any>
   {
     // const header = new HttpHeaders().append('Authorization', localStorage.getItem('token')); // may be localStorage/sessionStorage
-  
-    return this.http.post(ConceptsService.Domain_Url + 'api/auth/logout',null, {headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
+    console.log(localStorage.getItem("actviation"))
+
+ 
+
+    return this.http.get(ConceptsService.Domain_Url + 'auth/logout', {headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
       map((res:any)=>
         {
           this.toastr.successToastr(res.message)

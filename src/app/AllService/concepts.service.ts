@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class ConceptsService {
 
   constructor() { }
-  public static Domain_Url="https://course-center-app.herokuapp.com/"
+  public static Domain_Url="https://avicenna.pina-app.com/api/"
 
   static getHeader() : HttpHeaders
   {
@@ -16,6 +16,7 @@ export class ConceptsService {
     return contentHeader 
   }
   static getHeaderwithContentTkn():HttpHeaders{
+    console.log(localStorage.getItem('token'))
     const contentHeaders = new HttpHeaders().append('Authorization',localStorage.getItem('token'));
     // contentHeaders.append('Authorization',localStorage.getItem('token'));
     return contentHeaders;

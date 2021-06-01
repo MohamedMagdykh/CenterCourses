@@ -38,15 +38,15 @@
                   <div class="col-12">
                     <div class="row" >
                       <p class="col-4">Please select your Type User:</p>
-                      <input class="col-1" type="radio" id="Parent" name="typeUser" formControlName="typeUser"  value="3">
+                      <input class="col-1" type="radio" id="Parent" name="typeUser" formControlName="typeUser"  value="parent">
                       <label class="col-2" for="Parent">Parent</label>
-                      <input class="col-1" type="radio" id="Instructor" name="typeUser" formControlName="typeUser" value="2">
+                      <input class="col-1" type="radio" id="Instructor" name="typeUser" formControlName="typeUser" value="instructor">
                       <label class="col-2" for="Instructor">Instructor</label>
                     </div>
 
                   </div>
               
-                  <div class="row" style="margin-top: 1%;margin-bottom: 2%;" *ngIf="registerForm.value.typeUser =='3'">
+                  <div class="row" style="margin-top: 1%;margin-bottom: 2%;" *ngIf="registerForm.value.typeUser =='parent'">
                     <div class="col-6">
                       <input class="form-control" style="margin-right: 5%;" placeholder="Enter Your Generation Code If You Have" type="text" >
                     </div>

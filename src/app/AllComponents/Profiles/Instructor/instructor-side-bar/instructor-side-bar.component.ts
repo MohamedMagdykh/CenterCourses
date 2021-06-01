@@ -14,7 +14,7 @@ export class InstructorSideBarComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById('footer').style.width= "83.333333%"
     document.getElementById('footer').style.marginLeft= "16.666667%"
-    if(localStorage.getItem("type")!= "instructor" || localStorage.getItem("login")!= "true"  )
+    if(localStorage.getItem("type")!= "instructor" || localStorage.getItem("login")!= "true" || localStorage.getItem("actviation")!= "1"  )
     {
       this.router.navigate([''])
     }

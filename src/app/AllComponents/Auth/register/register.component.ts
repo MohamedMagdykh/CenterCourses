@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      typeUser: ['3'],
+      typeUser: ['parent'],
       email: ['', [Validators.required, Validators.email,Validators.pattern('.*com$')]],
       phone:['', [Validators.required,Validators.pattern('[0-9]*')]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -52,8 +52,8 @@ export class RegisterComponent implements OnInit {
       }
   
         // set error on matchingControl if validation fails
-        console.log(control.value)
-        console.log(matchingControl.value)
+        // console.log(control.value)
+        // console.log(matchingControl.value)
   
         if (control.value !== matchingControl.value) {
             matchingControl.setErrors({ mustMatch: true });
@@ -79,19 +79,33 @@ export class RegisterComponent implements OnInit {
    
       var body  =
       {
-        "name":dataFormCome.firstName+dataFormCome.lastName,
         "email":dataFormCome.email,
         "password":dataFormCome.password,
-        "type":dataFormCome.typeUser,
-        "gender":"male",
-        "phone_1":dataFormCome.phone
+        "role":dataFormCome.typeUser,
+        "first_name":dataFormCome.firstName,
+        "last_name":dataFormCome.lastName,
+        "phone":dataFormCome.phone
       }
       this.auth.Register(body).subscribe(res=>
         {
-          console.log(res)
+          // console.log(res)
           setTimeout(() => {
             this.toastr.successToastr("User Created")
-            this.onReset();
+            setTimeout(() => {
+              this.auth.LogIn(dataFormCome.email,dataFormCome.password).subscribe(res=>
+                {},
+                  err=>
+                {
+                  this.toastr.warningToastr(err.message)
+                })
+              this.router.navigate(['login'])
+              setTimeout(() => {
+                this.onReset();
+                 
+               }, 500);
+            }, 1500);
+       
+            
             
           }, 500);
   

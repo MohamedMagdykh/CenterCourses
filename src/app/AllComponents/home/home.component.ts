@@ -14,6 +14,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void
    {
+     if(localStorage.getItem("actviation")== "0")
+     {
+       setTimeout(() => {
+        document.getElementById("ActivationAcountbtn").click();
+
+       }, 500);
+
+     }
     this.wowService.init();
     this.customOptions= {
       loop: true,

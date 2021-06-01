@@ -37,13 +37,9 @@ export class LoginComponent implements OnInit {
             return;
         }
       var dataFormCome  = this.loginForm.value
-      var body  =
-      {
-        "email":dataFormCome.email,
-        "password":dataFormCome.password,
-      }
+    
       // console.log(body)
-      this.auth.LogIn(body).subscribe(res=>
+      this.auth.LogIn(dataFormCome.email,dataFormCome.password).subscribe(res=>
         {
           // console.log(res)
           setTimeout(() => {
@@ -51,42 +47,7 @@ export class LoginComponent implements OnInit {
             this.onReset();
             
           }, 500);
-          if(res.role_id == 2)
-          {
-            localStorage.setItem("type","instructor")
-            localStorage.setItem("login","true")
-            localStorage.setItem("NameUser",res.name)
-            localStorage.setItem("token", "Bearer "+res.token)
-            setTimeout(() => {
-              this.router.navigate(['instructor/LessonsInstructor'])
-
-            }, 1000);
-           
-          }
-          if(res.role_id == 3)
-          {
-            localStorage.setItem("type","Parent")
-            localStorage.setItem("login","true")
-            localStorage.setItem("NameUser",res.name)
-            localStorage.setItem("token","Bearer "+res.token)
-            setTimeout(() => {
-              this.router.navigate(['Parent'])
-
-              
-            }, 1000);
-          }
-          if(res.role_id == 1)
-          {
-            localStorage.setItem("type","child")
-            localStorage.setItem("login","true")
-            localStorage.setItem("NameUser",res.name)
-            localStorage.setItem("token","Bearer "+res.token)
-            setTimeout(() => {
-              this.router.navigate(['student/LessonsChild'])
-
-              
-            }, 1499);
-          }
+      
           //  console.log("Bearer "+res.token)
         }
         ,(err:any)=>

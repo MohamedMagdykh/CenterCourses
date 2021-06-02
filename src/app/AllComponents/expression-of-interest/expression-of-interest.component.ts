@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { EOIService } from 'src/app/AllService/e-o-i.service';
 
 @Component({
   selector: 'app-expression-of-interest',
@@ -17,6 +20,7 @@ export class ExpressionOfInterestComponent implements OnInit {
   selectTime = [];
   Subject = [];
   numberChild = 1;
+  yearData = []
 
   checkNumberChilds = false
   registerForm: FormGroup;
@@ -25,7 +29,7 @@ export class ExpressionOfInterestComponent implements OnInit {
   
   
  
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private SerEOI:EOIService,public toastr: ToastrManager,private router:Router ) {
     this.dropdownSettings= {
       singleSelection: false,
       idField: 'item_id',
@@ -87,6 +91,7 @@ export class ExpressionOfInterestComponent implements OnInit {
 
  
   ngOnInit(): void {
+    this.year()
    this.days = [
      "Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"
     ];
@@ -97,11 +102,7 @@ export class ExpressionOfInterestComponent implements OnInit {
  '11 AM' ,
 
     ];
-    this.Subject = [
-      'Mathematics' ,
-      'Science' ,
-      'Biology' ,
-    ];
+
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"
     
@@ -157,7 +158,38 @@ export class ExpressionOfInterestComponent implements OnInit {
     console.log('SUCCESS!! :-)\n\n' + JSON.stringify(dataFormCome) )
     console.log(dataFormCome )
 }
- 
+ courses(id:any)
+ {
+  
 
+ var x = id.target.value
+ console.log(x)
+  // this.yearData.forEach(element => {
+  //   if(element.id==id)
+  //   {
+  //     this.Subject = element.courses
+  //   }
+  // });
+ }
+year()
+{
+
+     this.SerEOI.year().subscribe(res=>
+       {
+        if(res.success == true || res.success == "true")
+        {
+          console.log(res.data)
+          this.yearData=res.data
+         
+        }
+        
+       }
+       ,(err:any)=>
+       {
+         console.log(err)
+         this.toastr.warningToastr(err.error.message)
+       }
+       )
+} 
 
 }

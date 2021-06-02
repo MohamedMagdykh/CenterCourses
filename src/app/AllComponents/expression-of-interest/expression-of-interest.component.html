@@ -120,20 +120,9 @@
                 <div class="row">
                     <div class="form-group col-lg-12">
                     <label for="name" >Academic Year </label>
-                    <select class="form-control" formControlName="AcademicYear" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('AcademicYear').errors?.required }"   id="AcademicYear{{i}}"  aria-label="Default select example">
+                    <select  (change)="courses($event)"   class="form-control" formControlName="AcademicYear" [ngClass]="{ 'is-invalid': submitted && numberChildren.controls[i].get('AcademicYear').errors?.required }"   id="AcademicYear{{i}}"  aria-label="Default select example">
                         <option value="" disabled selected hidden>Choose Year</option>
-                        <option value="1">Year 1</option>
-                        <option value="2">Year 2</option>
-                        <option value="3">Year 3</option>
-                        <option value="4">Year 4</option>
-                        <option value="5">Year 5</option>
-                        <option value="6">Year 6</option>
-                        <option value="7">Year 7</option>
-                        <option value="8">Year 8</option>
-                        <option value="9">Year 9</option>
-                        <option value="10">Year 10</option>
-                        <option value="11">Year 11</option>
-                        <option value="12">Year 12</option>
+                        <option data-value='{"name":"{{item.name}}","id":"{{item.id}}"}'   *ngFor="let item of yearData"   >{{item.name}}</option>
                       </select>
                       <div *ngIf="submitted && numberChildren.controls[i].get('AcademicYear').errors?.required" class="invalid-feedback">
                         <div *ngIf="numberChildren.controls[i].get('AcademicYear').errors?.required">Name is required</div>

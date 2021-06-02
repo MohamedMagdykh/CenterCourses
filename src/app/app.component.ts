@@ -25,17 +25,13 @@ export class AppComponent {
   }
   log_Out()
   {
-    if(localStorage.getItem("actviation")== "0"  )
-    {
-      document.getElementById("ActivationAcountbtn").click();
-
-    }
-    else
-    {
+  
       this.auth.LogOut().subscribe(res=>
         {
           // console.log(res)
           
+          localStorage.removeItem("actviation")  
+          localStorage.removeItem("mail")
           localStorage.removeItem("type")
           localStorage.setItem("login","false")
           localStorage.removeItem("NameUser")
@@ -51,38 +47,10 @@ export class AppComponent {
           this.toastr.warningToastr(err.message)
         }
         ) 
-    }
+
    
   }
-  activaionAcount()
-  {
-    this.auth.activate_user(this.activiationCode).subscribe(res=>
-      {
-        // console.log(res)
-        
   
-        setTimeout(() => {
-        }, 500);
- 
-      },
-      err=>
-      {
-        this.toastr.warningToastr(err.message)
-      }
-      )
-  }
-  resendCode()
-  {
-    this.auth.resend_activate().subscribe(res=>
-      {
- 
-      },
-      err=>
-      {
-        this.toastr.warningToastr(err.message)
-      }
-      )
-  }
   
 
 

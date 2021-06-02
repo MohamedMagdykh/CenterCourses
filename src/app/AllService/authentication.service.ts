@@ -45,21 +45,27 @@ export class AuthenticationService {
     }).pipe(
       map((res:any)=>
         {
-          this.toastr.successToastr("LogIn")
-          console.log(res.data)
-          if(res.data==undefined || res.data=="undefined")
+          
+          console.log(res)
+          if(res.success == false || res.success == "false")
           {
+            this.toastr.warningToastr(" Your Password Or E-mail Incorrect")
+
+          }
+          if((res.data==undefined || res.data=="undefined") && (res.is_verified == 0 || res.is_verified == "0"))
+          {
+            this.toastr.warningToastr("Activation Your Acount")
             if(res.role_passport == "instructor")
             {
               localStorage.setItem("type",res.role_passport)
-              localStorage.setItem("login","true")
+              // localStorage.setItem("login","true")
               localStorage.setItem("NameUser",res.first_name)  
               localStorage.setItem("mail",res.email) 
               localStorage.setItem("actviation",res.is_verified)  
              
               
               setTimeout(() => {
-                this.router.navigate([''])
+                this.router.navigate(['formActivation'])
   
               }, 1000);
              
@@ -67,14 +73,14 @@ export class AuthenticationService {
             if(res.role_passport == "student")
             {
               localStorage.setItem("type",res.role_passport)
-              localStorage.setItem("login","true")
+              // localStorage.setItem("login","true")
               localStorage.setItem("NameUser",res.first_name)  
               localStorage.setItem("mail",res.email) 
               localStorage.setItem("actviation",res.is_verified)  
              
               
               setTimeout(() => {
-                this.router.navigate([''])
+                this.router.navigate(['formActivation'])
   
               }, 1000);
              
@@ -82,14 +88,14 @@ export class AuthenticationService {
             if(res.role_passport == "parent")
             {
               localStorage.setItem("type",res.role_passport)
-              localStorage.setItem("login","true")
+              // localStorage.setItem("login","true")
               localStorage.setItem("NameUser",res.first_name)  
               localStorage.setItem("mail",res.email) 
               localStorage.setItem("actviation",res.is_verified)  
              
               
               setTimeout(() => {
-                this.router.navigate([''])
+                this.router.navigate(['formActivation'])
   
               }, 1000);
              
@@ -105,8 +111,9 @@ export class AuthenticationService {
   
             // }
           }
-          else
+          if((res.data!=undefined && res.data!="undefined") && (res.success == true || res.success == "true"))
           {
+            this.toastr.successToastr("LogIn")
             if(res.data.user.role_passport == "instructor")
             {
               localStorage.setItem("type",res.data.user.role_passport)
@@ -190,33 +197,46 @@ export class AuthenticationService {
       map((res:any)=>
       
         {
-
-          this.toastr.successToastr("Account Has Been Activated")
-          localStorage.setItem("token","Bearer "+res.data.access_token)
-          if(localStorage.getItem("type") == "instructor")
-          {
-            localStorage.setItem("actviation","1")  
-              this.router.navigate(['instructor/LessonsInstructor'])
-
-          }
-          if(localStorage.getItem("type") == "parent")
-          {
-            localStorage.setItem("actviation","1")  
-              this.router.navigate(['Parent'])
-
-          }
-          if(localStorage.getItem("type") == "student")
-          {
-            localStorage.setItem("actviation","1")  
-              this.router.navigate(['student/LessonsChild'])
-
-          }
-      
-          setTimeout(() => {
-            document.getElementById("ActivationAcountbtn").click();
-
-          }, 500);
           console.log(res)
+          if(res.success == false ||res.success == "false" )
+          {
+            this.toastr.warningToastr("This code is invalid")
+          }
+          if(res.success == true ||res.success == "true" )
+          {
+            this.toastr.successToastr("Account Has Been Activated")
+            localStorage.setItem("login","true")
+            localStorage.setItem("token","Bearer "+res.data.access_token)
+            localStorage.setItem("actviation","1") 
+            if(localStorage.getItem("type") == "instructor")
+            {
+                
+                this.router.navigate(['instructor/LessonsInstructor'])
+  
+            }
+            if(localStorage.getItem("type") == "parent")
+            {
+               
+                this.router.navigate(['Parent'])
+  
+            }
+            if(localStorage.getItem("type") == "student")
+            {
+              
+                this.router.navigate(['student/LessonsChild'])
+  
+            }
+            setTimeout(() => {
+              window.location.reload()
+            }, 1500);
+          }
+     
+      
+          // setTimeout(() => {
+          //   document.getElementById("ActivationAcountbtn").click();
+
+          // }, 500);
+        
           return res
         }),
         catchError((error: Response) => {

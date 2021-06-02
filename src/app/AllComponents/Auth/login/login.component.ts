@@ -42,11 +42,14 @@ export class LoginComponent implements OnInit {
       this.auth.LogIn(dataFormCome.email,dataFormCome.password).subscribe(res=>
         {
           // console.log(res)
-          setTimeout(() => {
+          if(res.success == true || res.success == "true")
+           {   setTimeout(() => {
             
             this.onReset();
             
           }, 500);
+        }
+       
       
           //  console.log("Bearer "+res.token)
         }

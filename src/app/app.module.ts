@@ -29,6 +29,7 @@ import { ParentComponent } from './AllComponents/Profiles/parent/parent.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { CommonModule } from '@angular/common';
+import { ActivateAcountComponent } from './AllComponents/Auth/activate-acount/activate-acount.component';
 
 
   
@@ -53,6 +54,7 @@ import { CommonModule } from '@angular/common';
     InstructorLessonsComponent,
     InstructorProfileComponent,
     ParentComponent,
+    ActivateAcountComponent,
     
     
   ],

@@ -18,14 +18,14 @@ export class ExpressionOfInterestComponent implements OnInit {
   dropdownSettings3:IDropdownSettings;
   time = [];
   selectTime = [];
-  Subject = [];
+  Subject = [[],[],[],[],[],[],[],[],[],[],[],[]];
   numberChild = 1;
   yearData = []
 
   checkNumberChilds = false
   registerForm: FormGroup;
   submitted = false;
-  
+  showCourse= [false,false,false,false,false,false,false,false,false,false,false,false];
   
   
  
@@ -81,27 +81,24 @@ export class ExpressionOfInterestComponent implements OnInit {
 
   newchild(): FormGroup {
     return this.formBuilder.group({
-      name: ['', Validators.required],
-      PreferredDays: ['', Validators.required],
-      Subject: ['', Validators.required],
-      AcademicYear: ['', Validators.required],
-      PreferredTime: ['', Validators.required],
+      student_name: ['', Validators.required],
+      preferedDays: ['', Validators.required],
+      courses: ['', Validators.required],
+      year_id: ['', Validators.required],
+      preferedTimes: ['', Validators.required],
     })
+
+
   }
 
  
   ngOnInit(): void {
     this.year()
+    this.Preferred_Time()
    this.days = [
      "Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"
     ];
-    this.time = [
-      '8 AM' ,
-      '9 AM' ,
-      '10 AM' ,
- '11 AM' ,
-
-    ];
+    
 
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"
@@ -136,40 +133,74 @@ export class ExpressionOfInterestComponent implements OnInit {
         return;
     }
    
-   
+
     var dataFormCome  = this.registerForm.value
+    // console.log(dataFormCome.numberChildren)
   
-  
-     var dataFormGo =
+     var dataFormGo = 
     { 
-      "firstName":dataFormCome.firstName ,
-        "lastName":dataFormCome.lastName ,
-        "email":dataFormCome.email ,
+      "first_name":dataFormCome.firstName ,
+        "last_name":dataFormCome.lastName ,
         "phone":dataFormCome.phone,
-        "numberChild":dataFormCome.numberChild,
-        "comment":dataFormCome.comment,
-         
-       
-
+        "email":dataFormCome.email ,
+        "comments":dataFormCome.comment,
+        "NumberOfChildren":dataFormCome.numberChild.length,
+        "children":dataFormCome.numberChildren
     }
+    this.SerEOI.EOI(dataFormGo).subscribe(res=>
+      {
+        console.log(res)
+       if(res.success == true || res.success == "true")
+       {
+         console.log(res.data)
+         this.toastr.successToastr("Data Sent")
+        
+       }
+       if(res.success == false || res.success == "false")
+       {
+         console.log(res.data)
+         this.toastr.warningToastr(res.message)
+        
+       }
+      }
+      ,(err:any)=>
+      {
+        console.log(err)
+        this.toastr.warningToastr(err.error.message)
+      }
+      )
 
 
 
-    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(dataFormCome) )
-    console.log(dataFormCome )
+    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(dataFormGo) )
+    console.log(dataFormGo )
 }
- courses(id:any)
+ courses(id:any,x)
  {
-  
+  this.showCourse[x]=true
+// console.log(x)
+//  var x = id.target.options[id.target.selectedIndex].id
+ var SubjectData = []
+ var SubjectName= []
+  this.yearData.forEach(element => {
+    if(element.id.toString()==id.target.selectedIndex)
+    {
+      
+      SubjectData= element.courses
+      // console.log(SubjectData)
+      for (let i = 0; i < SubjectData.length; i++) {
+        
+        SubjectName.push(SubjectData[i])
+        
+      }
+      // this.Subject.push(SubjectName)
+      this.Subject.splice(x,1,SubjectName);
+      console.log(this.Subject[x])
+    }
+  });
 
- var x = id.target.value
- console.log(x)
-  // this.yearData.forEach(element => {
-  //   if(element.id==id)
-  //   {
-  //     this.Subject = element.courses
-  //   }
-  // });
+
+  
  }
 year()
 {
@@ -178,9 +209,35 @@ year()
        {
         if(res.success == true || res.success == "true")
         {
-          console.log(res.data)
+          // console.log(res.data)
           this.yearData=res.data
          
+        }
+        
+       }
+       ,(err:any)=>
+       {
+         console.log(err)
+         this.toastr.warningToastr(err.error.message)
+       }
+       )
+} 
+Preferred_Time()
+{
+
+     this.SerEOI.PreferredTime().subscribe(res=>
+       {
+        if(res.success == true || res.success == "true")
+        {
+          console.log(res.data)
+          // this.yearData=res.data
+          this.time=[]
+          for (let i = 0; i < res.data.length; i++) {
+            this.time.push(res.data[i]) 
+            console.log(this.time)
+            
+          }
+          
         }
         
        }

@@ -48,10 +48,10 @@
               
                   <div class="row" style="margin-top: 1%;margin-bottom: 2%;" *ngIf="registerForm.value.typeUser =='parent'">
                     <div class="col-6">
-                      <input class="form-control" style="margin-right: 5%;" placeholder="Enter Your Generation Code If You Have" type="text" >
+                      <input class="form-control" style="margin-right: 5%;"  formControlName="code" placeholder="Enter Your Generation Code If You Have" type="text" >
                     </div>
                     <div class="col-4">
-                      <button class=" form-control text-white" style=" background-color: #5fcfdf">Generate</button>
+                      <button class=" form-control text-white" type="button" (click)="GenerationCode()" style=" background-color: #5fcfdf">Generate</button>
                     </div>
 
                   </div>
@@ -88,7 +88,7 @@
                 
                        
                     <div class="form-group ">
-                        <input type="tel" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Mobile Number" class="form-control" id="phone" name="phone">
+                        <input type="tel" formControlName="phone"   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Mobile Number" class="form-control" id="phone" name="phone">
                         <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                           <div *ngIf="f.phone.errors.required">Mobile Number  is required</div>
                           <div *ngIf="f.phone.errors.pattern">Mobile Number  Must Be Only Numbers</div>

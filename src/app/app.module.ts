@@ -30,9 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { CommonModule } from '@angular/common';
 import { ActivateAcountComponent } from './AllComponents/Auth/activate-acount/activate-acount.component';
-
-
-  
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';  
 
 @NgModule({
   declarations: [
@@ -70,7 +69,11 @@ import { ActivateAcountComponent } from './AllComponents/Auth/activate-acount/ac
     ShowHidePasswordModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    CommonModule
+    CommonModule,
+    MatSelectModule,
+    MatFormFieldModule
+    
+    
 
 
     

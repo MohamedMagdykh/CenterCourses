@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AuthenticationService } from 'src/app/AllService/authentication.service';
+import { EOIService } from 'src/app/AllService/e-o-i.service';
 
 
 @Component({
@@ -13,16 +14,18 @@ import { AuthenticationService } from 'src/app/AllService/authentication.service
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
- 
-  constructor(private formBuilder: FormBuilder,public toastr: ToastrManager,private auth :AuthenticationService,private router:Router) {
+  code = "test"
+   mobile 
+  constructor(private formBuilder: FormBuilder,public toastr: ToastrManager,private SerEOI:EOIService,private auth :AuthenticationService,private router:Router) {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
       typeUser: ['parent'],
       email: ['', [Validators.required, Validators.email,Validators.pattern('.*com$')]],
       phone:['', [Validators.required,Validators.pattern('[0-9]*')]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+      code:['']
       }, {
     validator:this.MustMatch('password', 'confirmPassword')
     })
@@ -70,6 +73,7 @@ export class RegisterComponent implements OnInit {
   registerform()
  {
       this.submitted = true;
+      console.log(this.registerForm.value)
       // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
@@ -119,6 +123,55 @@ export class RegisterComponent implements OnInit {
  {
   this.submitted = false;
   this.registerForm.reset();
+ }
+// EOI-60bb6d15661d3 
+ GenerationCode()
+ {
+    if(this.registerForm.value.code!="")
+    {
+
+ 
+
+     this.SerEOI.generationCode(this.registerForm.value.code).subscribe(res=>
+       {
+      
+        if(res.success == false || res.success == "false")
+        {
+          this.toastr.warningToastr("invaled Code")
+        }
+        if(res.success == true || res.success == "true")
+        {
+          this.toastr.successToastr("Data Returned Successfully")
+          // this.registerForm.controls.firstName = res.data.first_name
+          // this.registerForm.controls.lastName = res.data.last_name
+          // this.registerForm.controls.email  = res.data.email
+          // this.mobile  =res.data.phone
+          // console.log(this.registerForm.controls.phone)
+          
+          this.registerForm = this.formBuilder.group({
+            firstName: [res.data.first_name, Validators.required],
+            lastName: [res.data.last_name, Validators.required],
+            typeUser: ['parent'],
+            email: [res.data.email, [Validators.required, Validators.email,Validators.pattern('.*com$')]],
+            phone:[res.data.phone, [Validators.required,Validators.pattern('[0-9]*')]],
+            password: ['', [Validators.required, Validators.minLength(8)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+            code:['']
+            }, {
+          validator:this.MustMatch('password', 'confirmPassword')
+          })
+    
+          
+        }
+        
+       }
+       ,(err:any)=>
+       {
+         console.log(err)
+         this.toastr.warningToastr(err.error.message)
+       }
+       )
+      }
  }
 
 }

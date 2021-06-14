@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     document.getElementById('footer').style.marginLeft= "0%"
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('.*com$')]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       })
       if( localStorage.getItem("login")== "true"  )
       {

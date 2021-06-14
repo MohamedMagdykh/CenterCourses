@@ -33,145 +33,28 @@
                     <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated" *ngFor="let item of subjects">
                         
                         <div class="card"   >
-                            <div class="coverSelected" *ngIf="item.visable == false">
+                            <!-- <div class="coverSelected" *ngIf="item.visable == false">
                                 <div class="select">Selected</div>
-                            </div>
+                            </div> -->
                             <div class="imgback" >
                                 <div class="cover"></div>
-                                <img class="card-img-top" src="{{item.photo}}" alt="Math">
+                                <!-- <img class="card-img-top" src="{{item.photo}}" alt="Math"> -->
+                                <img class="card-img-top" src="../../../assets/math.jpg" alt="Math">
                             </div>
                             <div class="card-body text-center">
                                 <div class="card-title"><a href="courses.html">{{item.name}}</a></div>
-                                <div class="card-text">{{item.describe}}</div>
+                                <!-- <div class="card-text">{{item.describe}}</div> -->
                             </div>
+                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>${{item.hour_price}} / 1 hr</span></div>
                             <div class="price_box d-flex flex-row align-items-center">
                                 
                                 <div class="course_author_name" (click)="addCard(item.id)" data-toggle="modal" data-target="#Payment"><a  class="btn d-block btn-primary btn-outline-primary py-3">Enroll Now!</a></div>
                                 
-                                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>${{item.price}} / 1 hr</span></div></div>
+                               </div>
                             </div>
                             </div>
                         </div>    
-                            <!-- <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/biology.jpg" alt="biology">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">Biology</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                            <div class="course_author_image">
-                            
-                            </div>
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/chemistry.jpg" alt="chemistry">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">Chemistry</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/art.jpg" alt="art">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">Art</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
                            
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/english.jpg" alt="English">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">English</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                         
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/geography.jpg" alt="geography">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">Geography </a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                           
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/history.jpg" alt="history">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">History</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                         
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/physics.jpg" alt="physics">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">physics</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-                        
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-lg-4 course_box ftco-animate  fadeInUp wow ftco-animated ">
-                            <div class="card">
-                            <img class="card-img-top" src="../../../assets/Computer.jpg" alt="https://unsplash.com/@kimberlyfarmer">
-                            <div class="card-body text-center">
-                            <div class="card-title"><a href="courses.html">Computer</a></div>
-                            <div class="card-text">Some text to describe the course etc...</div>
-                            </div>
-                            <div class="price_box d-flex flex-row align-items-center">
-   
-                            <div class="course_author_name">Per hour</div>
-                            <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-                            </div>
-                        </div>
-                    </div> -->
            
             </div>
         </div>
@@ -181,29 +64,29 @@
             <div class="container">
               <h1 class="fadeInUp wow " style="text-align:center;font-weight: bold;color: rgb(7, 12, 44);">Our <span style="color: #5fcfdf;" >Offers</span></h1>
               <div class="row">
-                  <div class=" col-md-6 offerMQ fadeInUp wow " style="padding: 10% 5% 10% 15%;">
+                  <div *ngFor="let item of offers" class=" col-md-6 offerMQ fadeInUp wow " style="padding: 10% 5% 10% 15%;">
                     <div class="dl">
                       <div class="brand">
                           <h2>
-                            AVICENNA Offers
+                            {{item.name}}
                           </h2>
                       </div>
                       <div class="discount alizarin">
-                          5%
+                        {{item.offer_precentage}}%
                           <div class="type">
                               off
                           </div>
                       </div>
                       <div class="descr">
                           <strong>
-                              When you Select 2 Subject
+                              When you Select <span> {{item.courses_count}}</span> Subject
                           </strong> 
                       </div>
                 
                    
                     </div>
                   </div>
-                  <div class=" col-md-6 offerMQ fadeInUp wow " style="padding: 10% 15% 10% 5%;">
+                  <!-- <div class=" col-md-6 offerMQ fadeInUp wow " style="padding: 10% 15% 10% 5%;">
                     <div class="dl" >
                       <div class="brand" >
                           <h2>
@@ -224,7 +107,7 @@
                 
                    
                     </div>
-                  </div>
+                  </div> -->
                
               </div>
             </div>

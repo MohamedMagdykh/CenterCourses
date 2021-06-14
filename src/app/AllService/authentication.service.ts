@@ -146,8 +146,11 @@ export class AuthenticationService {
                 
               }, 1000);
             }
-            if(res.data.user.role_id == "student")
+            console.log("1")
+
+            if(res.data.user.role_passport == "student")
             {
+              console.log("2")
               localStorage.setItem("type", res.data.user.role_passport)
               localStorage.setItem("login","true")
               localStorage.setItem("NameUser",res.data.user.first_name)  

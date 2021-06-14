@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AuthenticationService } from './AllService/authentication.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [DatePipe]
 })
 export class AppComponent {
   title = 'AVICENNAACADEMY';
@@ -14,8 +16,12 @@ export class AppComponent {
   NameUser = localStorage.getItem("NameUser")
   typeUser = localStorage.getItem("type")
   activiationCode
-  constructor(public toastr: ToastrManager,private auth :AuthenticationService,private router:Router)
+  myDate:any = new Date();
+  constructor(public toastr: ToastrManager,private auth :AuthenticationService,private router:Router,private datePipe: DatePipe)
   {
+    this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    console.log(this.myDate )
+
 
   }
   ngOnInit(): void {
@@ -51,7 +57,8 @@ export class AppComponent {
    
   }
   
-  
+
+
 
 
 }

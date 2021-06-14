@@ -9,6 +9,9 @@ export class ConceptsService {
 
   constructor() { }
   public static Domain_Url="https://avicenna.pina-app.com/api/"
+  public static imageUrlProfile = "https://avicenna.pina-app.com/storage/";
+
+   
 
   static getHeader() : HttpHeaders
   {

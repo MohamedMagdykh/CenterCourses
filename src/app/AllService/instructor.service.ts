@@ -61,5 +61,40 @@ export class InstructorService {
         timeout(15000)
     )
   }
+  TimeTable(ViewType,timeZone) :Observable<any>
+  {
+    return this.http.get(ConceptsService.Domain_Url + 'instructor/getMyTimeTable?searchType='+ViewType+'&userTimezone='+timeZone, {headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
+      map((res:any)=>
+        {
+       
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
+  timeZone() :Observable<any>
+  {
+    
+    return this.http.get(ConceptsService.Domain_Url + 'getTimeZones', {headers:ConceptsService.getHeader()}).pipe(
+      map((res:any)=>
+        {
+       
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
+  
+  
 
 }

@@ -16,11 +16,11 @@ export class AppComponent {
   NameUser = localStorage.getItem("NameUser")
   typeUser = localStorage.getItem("type")
   activiationCode
-  myDate:any = new Date();
+  // myDate:any = new Date();
   constructor(public toastr: ToastrManager,private auth :AuthenticationService,private router:Router,private datePipe: DatePipe)
   {
-    this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-    console.log(this.myDate )
+    // this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    // console.log(this.myDate )
 
 
   }

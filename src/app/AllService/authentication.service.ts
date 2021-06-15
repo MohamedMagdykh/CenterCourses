@@ -67,7 +67,7 @@ export class AuthenticationService {
               setTimeout(() => {
                 this.router.navigate(['formActivation'])
   
-              }, 1000);
+              }, 1200);
              
             }
             if(res.role_passport == "student")
@@ -82,8 +82,10 @@ export class AuthenticationService {
               setTimeout(() => {
                 this.router.navigate(['formActivation'])
   
-              }, 1000);
-             
+              }, 1200);
+              setTimeout(() => {
+                window.location.reload()
+              }, 1500);
             }
             if(res.role_passport == "parent")
             {
@@ -97,8 +99,10 @@ export class AuthenticationService {
               setTimeout(() => {
                 this.router.navigate(['formActivation'])
   
-              }, 1000);
-             
+              }, 1200);
+              setTimeout(() => {
+                window.location.reload()
+              }, 1500);
             }
        
         
@@ -127,9 +131,11 @@ export class AuthenticationService {
               setTimeout(() => {
                 this.router.navigate(['instructor/LessonsInstructor'])
   
-              }, 1000);
+              }, 1200);
              
-            }
+            }  setTimeout(() => {
+              window.location.reload()
+            }, 1500);
             if(res.data.user.role_passport == "parent")
             {
               localStorage.setItem("type",res.data.user.role_passport)
@@ -144,7 +150,10 @@ export class AuthenticationService {
                 this.router.navigate(['Parent'])
   
                 
-              }, 1000);
+              }, 1200);
+              setTimeout(() => {
+                window.location.reload()
+              }, 1500);
             }
             console.log("1")
 
@@ -163,16 +172,17 @@ export class AuthenticationService {
                 this.router.navigate(['student/LessonsChild'])
   
                 
-              }, 1499);
+              }, 1200);
+              setTimeout(() => {
+                window.location.reload()
+              }, 1500);
             }
           }
         
           
        
          
-          setTimeout(() => {
-            window.location.reload()
-          }, 1500);
+        
           
           
          return res;

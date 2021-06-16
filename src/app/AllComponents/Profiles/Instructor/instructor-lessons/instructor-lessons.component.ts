@@ -14,6 +14,8 @@ export class InstructorLessonsComponent implements OnInit {
   valView = 'week'
   insructorName
   timeTableDate = []
+  idLesson
+  NotAttending = false
   constructor(private SerInstructor:InstructorService,public toastr: ToastrManager,private router:Router) { }
 
   ngOnInit(): void {
@@ -55,7 +57,8 @@ Time_table()
           res.data.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
-            console.log(b.date)
+            console.log(new Date(b.date))
+          
             console.log(new Date(b.date.substr(0,b.date.indexOf(' '))) )
             var dateWithOutTime = b.date.substr(0,b.date.indexOf(' '));
             var dateWithOutTime2 = a.date.substr(0,a.date.indexOf(' '));
@@ -83,6 +86,7 @@ Time_table()
            this.timeTableDate.push({"day":n,"data":res.data[i]})
            res.data[i].to =  res.data[i].to.slice(0, -3);
            res.data[i].from =  res.data[i].from.slice(0, -3);
+           res.data[i].date =res.data[i].date.substr(0,res.data[i].date.indexOf(' '));
             
           }
        
@@ -124,5 +128,43 @@ get_Instructor()
         }
         )
        }
+       idlesson(id)
+       {
+         this.idLesson = id
+
+       }
+       mark_Absent()
+      {
+    
+          this.SerInstructor.markAbsent(this.idLesson).subscribe(res=>
+            {
+          
+            if(res.success == false || res.success == "false")
+            {
+              this.toastr.warningToastr("Invalid TOKEN")
+            }
+            if(res.success == true || res.success == "true")
+            {
+              if (res.data.is_instructor_absent == true ||res.data.is_instructor_absent == 'true' )
+              {
+                this.toastr.successToastr("You Will Not Attend This Class Done")
+                this.Time_table()
+              }
+              if (res.data.is_instructor_absent == false ||res.data.is_instructor_absent == 'false' )
+              {
+                this.toastr.successToastr("You Will  Attend This Class Done")
+                this.Time_table()
+              }
+             
+            }
+            
+            }
+            ,(err:any)=>
+            {
+              console.log(err)
+              this.toastr.warningToastr(err.error.message)
+            }
+            )
+          }
 
 }

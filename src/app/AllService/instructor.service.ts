@@ -94,6 +94,23 @@ export class InstructorService {
         timeout(15000)
     )
   }
+  markAbsent(id) :Observable<any>
+  {
+    var body = {}
+    return this.http.post(ConceptsService.Domain_Url + 'instructor/markAbsent/'+id, body,{headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
+      map((res:any)=>
+        {
+       
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
   
   
 

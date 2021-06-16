@@ -10,7 +10,7 @@
                   <div class="cover" data-toggle="modal" data-target="#ChangeProfilePhoto">
                     <span>Change</span>
                   </div>
-                    <img *ngIf="item.avatar!=null || item.avatar!='null'" class="profile_img" src="{{ url+item.avatar}}" alt="instructor">
+                    <img *ngIf="item.avatar!=null && item.avatar!='null'" class="profile_img" src="{{ url+item.avatar}}" alt="instructor">
                     <img *ngIf="item.avatar==null || item.avatar=='null'" class="profile_img" src="../../../../../assets/no_user.jpg" alt="instructor">
 
                 </div>
@@ -84,7 +84,7 @@
             </div>
            
           </div>
-          <button class="form-control updateBtn" >Update Profile</button>
+        
             <div style="height: 26px"></div>
           <div class="card shadow-sm">
             <div class="card-header bg-transparent border-0">

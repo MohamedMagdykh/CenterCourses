@@ -49,4 +49,35 @@ export class CoursesService {
         timeout(15000)
     )
   }
+  CheckOut(body) :Observable<any>
+  {
+    // const header = new HttpHeaders().append('Authorization', localStorage.getItem('token')); // may be localStorage/sessionStorage
+    return this.http.post(ConceptsService.Domain_Url + 'parent/checkout',body, {headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
+      map((res:any)=>
+        {
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
+  getMyStudent() :Observable<any>
+  {
+    return this.http.get(ConceptsService.Domain_Url + 'parent/getMyStudents', {headers:ConceptsService.getHeaderwithContentTkn()}).pipe(
+      map((res:any)=>
+        {
+          return res
+        }),
+        catchError((error: Response) => {
+          // console.log("userData : ", error)
+
+          return throwError(error);
+        }),
+        timeout(15000)
+    )
+  }
 }

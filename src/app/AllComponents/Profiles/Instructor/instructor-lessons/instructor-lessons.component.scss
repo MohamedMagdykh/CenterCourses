@@ -148,6 +148,7 @@
     }
     @media only screen and (min-width: 992px) and (max-width: 1199px)
     {
+      
         
         .font-size13
         {
@@ -161,7 +162,10 @@
     @media only screen and (min-width: 768px) and (max-width: 991px)
     {
         
-       
+        .NotAttending
+        {
+            font-size: 0.7rem;
+        }
     
     }
     @media only screen and (max-width: 767px) 
@@ -171,7 +175,10 @@
             padding-top: 7% !important;
 
         }
-    
+        .NotAttending
+        {
+            font-size: 0.5rem;
+        }
      
     
     }    
@@ -183,6 +190,24 @@
             padding-top: 14% !important;
 
         }
+        .NotAttending
+        {
+            font-size: 0.5rem;
+        }
+    }
+    .NotAttending{
+        background: red;
+        color: white;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+       font-size: 0.8rem;
+       position: absolute;
+        right: 10%;
+        left: 10%;
+       
+        bottom:10px;
+        
     }
     
 

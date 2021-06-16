@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NgwWowService } from 'ngx-wow';
+import { ConceptsService } from 'src/app/AllService/concepts.service';
 import { CoursesService } from 'src/app/AllService/courses.service';
 import { InstructorService } from 'src/app/AllService/instructor.service';
 
@@ -12,6 +13,7 @@ import { InstructorService } from 'src/app/AllService/instructor.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  url = ConceptsService.imageUrlProfile
   subjects = [
     // {
     //   id:"1",
@@ -100,6 +102,7 @@ export class CoursesComponent implements OnInit {
   totalPriceShow = 0 
   @ViewChild('closebutton') closebutton;
   offers = []
+  btnEnrollVisable = false
 
   constructor(private wowService: NgwWowService,private router:Router,private formBuilder: FormBuilder, private SerInstructor:InstructorService, private SerOffers:CoursesService,public toastr: ToastrManager) { }
 
@@ -109,6 +112,13 @@ export class CoursesComponent implements OnInit {
     document.getElementById('footer').style.marginLeft= "0%"
     this.get_Courses()
     this.get_Offers()
+    if(localStorage.getItem("type")== "parent" && localStorage.getItem("login")== "true" && localStorage.getItem("actviation")== "1")
+    {
+      
+      this.btnEnrollVisable = true
+      this.get_MyStudent()
+    }
+    
   }
   addCard(id)
   {
@@ -182,7 +192,7 @@ export class CoursesComponent implements OnInit {
   get_Courses()
             {
            
-                this.SerInstructor.courses().subscribe(res=>
+                this.SerOffers.get_Packages().subscribe(res=>
                   {
                     console.log(res)
                     this.subjects = res.data
@@ -217,6 +227,20 @@ export class CoursesComponent implements OnInit {
                   }
                   )
             }
-
+            get_MyStudent()
+            {
+           
+                this.SerOffers.getMyStudent().subscribe(res=>
+                  {
+                    console.log(res.data)
+                    
+                  }
+                  ,(err:any)=>
+                  {
+                    console.log(err)
+                    this.toastr.warningToastr(err.error.message)
+                  }
+                  )
+            }
 
 }

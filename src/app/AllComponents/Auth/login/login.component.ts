@@ -12,16 +12,18 @@ import { AuthenticationService } from 'src/app/AllService/authentication.service
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  
   constructor(private formBuilder: FormBuilder,public toastr: ToastrManager,private auth :AuthenticationService,private router:Router) { }
 
   ngOnInit(): void {
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"
+    
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('.*com$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       })
-      if( localStorage.getItem("login")== "true"  )
+      if( localStorage.getItem("login")== "true" &&  localStorage.getItem('token') != null && localStorage.getItem('token') !="null")
       {
         this.router.navigate([''])
       }

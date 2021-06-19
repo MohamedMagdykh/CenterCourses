@@ -16,6 +16,7 @@ export class AppComponent {
   NameUser = localStorage.getItem("NameUser")
   typeUser = localStorage.getItem("type")
   activiationCode
+  tkn
   // myDate:any = new Date();
   constructor(public toastr: ToastrManager,private auth :AuthenticationService,private router:Router,private datePipe: DatePipe)
   {
@@ -27,7 +28,8 @@ export class AppComponent {
   ngOnInit(): void {
 
    this.checkLog = localStorage.getItem("login")
-   console.log(this.checkLog)
+   this.tkn=localStorage.getItem('token')
+ 
   }
   log_Out()
   {

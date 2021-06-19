@@ -17,7 +17,7 @@ export class SideBarComponent implements OnInit {
     document.getElementById('footer').style.marginLeft= "16.666667%"
     // document.getElementById('ftco-navbar').style.width= "83.333333%"
     // document.getElementById('ftco-navbar').style.marginLeft= "16.666667%"
-    if(localStorage.getItem("type")!= "student" || localStorage.getItem("login")!= "true" || localStorage.getItem("actviation")!= "1"  )
+    if(localStorage.getItem("type")!= "student" || localStorage.getItem("login")!= "true" || localStorage.getItem("actviation")!= "1" ||  localStorage.getItem('token') == null || localStorage.getItem('token') =="null" )
     {
       this.router.navigate([''])
     }

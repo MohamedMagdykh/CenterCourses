@@ -15,7 +15,7 @@ export class InstructorLessonsComponent implements OnInit {
   insructorName
   timeTableDate = []
   idLesson
-  NotAttending = false
+  // NotAttending = false
   constructor(private SerInstructor:InstructorService,public toastr: ToastrManager,private router:Router) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ Time_Zone()
        {
         if(res.success == true || res.success == "true")
         {
-          console.log(res.data)
+          // console.log(res.data)
           this.timezoneData=res.data
           
         }
@@ -57,15 +57,41 @@ Time_table()
           res.data.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
-            console.log(new Date(b.date))
+            // console.log(new Date(b.date.substr(0,b.date.indexOf(' '))))
+          console.log(b.date)
+          console.log(a.date)
           
-            console.log(new Date(b.date.substr(0,b.date.indexOf(' '))) )
-            var dateWithOutTime = b.date.substr(0,b.date.indexOf(' '));
-            var dateWithOutTime2 = a.date.substr(0,a.date.indexOf(' '));
+            // console.log(new Date("June 12 2021 02:00:00") )
+            var res = b.date.split(" ");
+             var resB1 = res[0]
+             var resB2 = res[1]
+             var res11 = resB1.split("-");
+             var res2 = a.date.split(" ");
+             var resA1 = res2[0]
+             var resA2 = res2[1]
+             var res22 = resA1.split("-");
+             var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+          var dateUtc1=  month[parseInt(res11[1])]+" "+res11[2]+" "+res11[0]+" "+ resB2
+          var dateUtc2=  month[parseInt(res22[1])]+" "+res22[2]+" "+res22[0]+" "+ resA2
 
-            console.log(new Date(dateWithOutTime).getTime())
-            
-            return new Date(dateWithOutTime).getTime() - new Date(dateWithOutTime2).getTime();
+            // var dateWithOutTime = b.date.substr(0,b.date.indexOf(' '));
+            // var dateWithOutTime2 = a.date.substr(0,a.date.indexOf(' '));
+
+            // console.log(new Date(dateWithOutTime).getTime())
+            console.log()
+            return new Date(dateUtc1).getTime() - new Date(dateUtc2).getTime();
           });
           res.data.reverse();
           this.timeTableDate = []

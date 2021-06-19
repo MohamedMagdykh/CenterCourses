@@ -58,15 +58,15 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Saturday'"  >
-                        <a  href="{{item.data.zoom_link}}"  *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}"  *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
                         <span  class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
                         <div class="margin-10px-top font-size13">{{item.data.to}} - {{item.data.from}}</div>
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
                     </div> 
                 </ng-container>
                 </td>
@@ -75,8 +75,8 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Sunday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
@@ -84,7 +84,7 @@
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>
@@ -94,8 +94,8 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Monday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
@@ -103,7 +103,7 @@
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>
@@ -113,16 +113,16 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Tuesday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
                         <div class="margin-10px-top font-size13">{{item.data.to}} - {{item.data.from}}</div>
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
-                        <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>
@@ -132,8 +132,8 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Wednesday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
@@ -141,7 +141,7 @@
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>
@@ -151,8 +151,8 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Thursday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
@@ -160,7 +160,7 @@
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>
@@ -170,8 +170,8 @@
                     <div style="position: relative; 
                     padding: 10% 0%;
                     border-top: 1px solid #dee2e6;"  *ngIf="item.day == 'Friday'"  >
-                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && NotAttending == false)  || (item.data.zoom_link != 'null'&& NotAttending == false)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
-                        <div  class="text-center" *ngIf="NotAttending == true" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
+                        <a  href="{{item.data.zoom_link}}" *ngIf="(item.data.zoom_link != null && item.data.is_instructor_absent == 0)  || (item.data.zoom_link != 'null'&& item.data.is_instructor_absent == 0)" style="position: absolute; right: 0;left: 0;top: 0;bottom: 0; background: rgba(0, 128, 0, 0.52);" ></a>
+                        <div  class="text-center" *ngIf="item.data.is_instructor_absent == 1" style="padding: 40% 10% 10% 10%;position: absolute; right: 0;left: 0;top: 0;bottom: 0; background:rgba(255, 0, 0,0.52);color: white;font-weight: bold;"data-toggle="modal" data-target="#attending" (click)="idlesson(item.data.id)">Not Attending</div>
 
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 ">{{item.data.course}}</span>
 
@@ -179,7 +179,7 @@
                         <div class="font-size13 text-light-gray d-none d-lg-block">classId:{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray d-block d-lg-none">{{item.data.group}}</div>
                         <div class="font-size13 text-light-gray">{{item.data.date}}</div>
-                        <button class="form-control NotAttending" *ngIf="NotAttending == false" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Not Attending </button>
+                        <button class="form-control NotAttending" *ngIf="item.data.is_instructor_absent == 0" data-toggle="modal" data-target="#notattending"  (click)="idlesson(item.data.id)" >Apologise </button>
 
                     </div> 
                 </ng-container>

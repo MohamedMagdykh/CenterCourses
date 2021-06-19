@@ -53,7 +53,7 @@
                             
                             <div class="price_box d-flex flex-row align-items-center">
                                 
-                                <div *ngIf="btnEnrollVisable == true" class="course_author_name" (click)="addCard(item.id)" data-toggle="modal" data-target="#Payment"><a  class="btn d-block btn-primary btn-outline-primary py-3">Enroll Now!</a></div>
+                                <div *ngIf="btnEnrollVisable == true" class="course_author_name" (click)="cardPackages(item.id)" data-toggle="modal" data-target="#Payment"><a  class="btn d-block btn-primary btn-outline-primary py-3">Enroll Now!</a></div>
                                 
                                </div>
                             </div>
@@ -86,7 +86,7 @@
                           </div>
                           <div class="priceeDiscount alizarin col-6">
                             <del>
-                              <span class="amount type">${{item.net_value_after_discount}}</span>
+                              <span class="amount type">${{item.net_value}}</span>
                             </del>
                             <br>
                             <span style=" font-size: 18px;">After Discount</span>
@@ -102,13 +102,18 @@
                       <div class="descr">
                           <strong>
                               When you Select <span> {{item.courses_count}} Subject <br>
-                                ( <span *ngFor="let item2 of item.courses ; let i=index"> {{item2.name}}<span *ngIf="item?.courses.length != i+1"> + </span></span> )
+                                ( <span *ngFor="let item2 of item.courses ; let i=index" style="font-size: 0.9rem;"> {{item2.name}}<span *ngIf="item?.courses.length != i+1"> + </span></span> )
                               </span> 
                           </strong> 
                       </div>
-                
+                      <div class="price_box d-flex flex-row align-items-center">
+                                
+                        <div *ngIf="btnEnrollVisable == true" class="course_author_name" (click)="cardOffers(item.id)" data-toggle="modal" data-target="#PaymentOffers"><a  class="btn d-block btn-primary btn-outline-primary py-3">Enroll Now!</a></div>
+                        
+                       </div>
                    
                     </div>
+                    
                   </div>
                   <!-- <div class=" col-md-6 offerMQ fadeInUp wow " style="padding: 10% 15% 10% 5%;">
                     <div class="dl" >
@@ -138,7 +143,7 @@
           </section>
 
 
-        <!-- //////////////////////////////////////PaymentModel/////////////////////////////////// -->
+        <!-- //////////////////////////////////////Payment package Model/////////////////////////////////// -->
         <form #Payment="ngForm" >
             <div class="container">
               
@@ -160,11 +165,10 @@
                                 <label for="Country">Choose  Your Child<span class="text-lightBlue">.</span></label>
                                 <div class="row" >
                                     <div class="form-group col-lg-12">
-                                      <select class="form-control"  name="numberChild" aria-label="Default select example">
+                                      <select class="form-control" [(ngModel)]="idStudent" name="numberChild" aria-label="Default select example">
                                         <option disabled selected>Choose  Your Child</option>
-                                        <option value="1">Ahmed</option>
-                                        <option value="2">Mohamed</option>
-                                        <option value="3">Mahmoud</option>
+                                        <option value="{{item.id}}" *ngFor="let item of myStudents">{{item.first_name}}</option>
+                                  
                                       
                                       </select>
                                     </div>
@@ -172,28 +176,36 @@
                             </div>
                             <div class="checkout-summary">
                                 <h1 class="Cart-Total">Cart Total</h1>
-                                <div *ngFor="let item of subjectSelect">
-                                    <p class="sub-total">{{item.name}}<span style="width: 20%;" id="sub-total">{{item.price}} $ <button type="button" class="close"  (click)="addCard(item.id)">&times;</button></span> </p>
 
-                                </div>
-                                <h2 *ngIf="subjectSelect.length == 1">Total Price<span id="Grandtotal" >{{totalPriceShow}} &nbsp; $</span></h2>
-                                <div *ngIf="subjectSelect.length == 2">
-                                <h2 >Total Price <span id="Discount5%">{{totalPriceShow}} &nbsp; $</span></h2>
-                                <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 5 %</h3>
-                                </div>
-                                <div *ngIf="subjectSelect.length >= 3">
-                                    
-                                <h2 >Total Price <span id="Discount10%">{{totalPriceShow}}  &nbsp; $</span></h2>
-                                <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 10 %</h3>
-                                </div>
+                                <h2 > Name<span id="Grandtotal" >{{subjectPackageSelect.name}} </span></h2>
+                                
+                                <h2 > Price<span id="Grandtotal" style="color: green;" >$&nbsp;{{subjectPackageSelect.net_value}} </span></h2>
+                              
                             </div>
+                            <!-- <div class="checkout-summary">
+                              <h1 class="Cart-Total">Cart Total</h1>
+                              <div *ngFor="let item of subjectSelect">
+                                  <p class="sub-total">{{item.name}}<span style="width: 20%;" id="sub-total">{{item.price}} $ <button type="button" class="close"  (click)="addCard(item.id)">&times;</button></span> </p>
+
+                              </div>
+                              <h2 *ngIf="subjectSelect.length == 1">Total Price<span id="Grandtotal" >{{totalPriceShow}} &nbsp; $</span></h2>
+                              <div *ngIf="subjectSelect.length == 2">
+                              <h2 >Total Price <span id="Discount5%">{{totalPriceShow}} &nbsp; $</span></h2>
+                              <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 5 %</h3>
+                              </div>
+                              <div *ngIf="subjectSelect.length >= 3">
+                                  
+                              <h2 >Total Price <span id="Discount10%">{{totalPriceShow}}  &nbsp; $</span></h2>
+                              <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 10 %</h3>
+                              </div>
+                          </div> -->
 
                      
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn anotherSubject"  data-dismiss="modal" >Add Another Subject</button>
-                        <button type="submit" class="btn btn-danger "data-dismiss="modal" style="background: #5fcfdf;border-color: #5fcfdf;" >Payment</button>
+                        <button type="button" class="btn anotherSubject" id="closePayment" data-dismiss="modal" >Cancel</button>
+                        <button type="submit" class="btn btn-danger "style="background: #5fcfdf;border-color: #5fcfdf;" (click)="check_out()"  >Payment</button>
                       </div>
                     </div>
                     
@@ -203,3 +215,81 @@
               </div>
             
             </form>
+             <!-- //////////////////////////////////////Payment Offers Model/////////////////////////////////// -->
+        <form #PaymentOffers="ngForm" >
+          <div class="container">
+            
+              <!-- Modal ForgetPassword -->
+              <div class="modal fade" id="PaymentOffers" role="dialog" >
+                <div class="modal-dialog" style="margin-top: 2%;">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 style="color: rgb(7, 12, 44);">Course reservation</h3>
+                      <button type="button" class="close" #closebutton  data-dismiss="modal">&times;</button>
+                      
+                     
+                    </div>
+                    <div class="modal-body">
+                      <div class="checkout-inner">
+                          <div >
+                              <label for="Country">Choose  Your Child<span class="text-lightBlue">.</span></label>
+                              <div class="row" >
+                                  <div class="form-group col-lg-12">
+                                    <select class="form-control" [(ngModel)]="idStudent" name="numberChild" aria-label="Default select example">
+                                      <option  selected>Choose  Your Child</option>
+                                      <option value="{{item.id}}" *ngFor="let item of myStudents">{{item.first_name}}</option>
+                                
+                                    
+                                    </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="checkout-summary">
+                              <h1 class="Cart-Total">Cart Total</h1>
+                              <h2 style="color: red;" > Discount {{subjectOffersSelect.offer_precentage}} %</h2>
+                            
+                              <h2 > Name Offer<span id="Grandtotal" >{{subjectOffersSelect.name}} </span></h2>
+                              <!-- <h2 > Subjects : <span id="Grandtotal" *ngFor="let item of subjectOffersSelect.courses let i = index" >{{item.name}}<span *ngIf="item?.length != i+1"> - </span> </span></h2> -->
+                              <h2  > Subjects</h2>
+                              <div *ngFor="let item of subjectOffersSelect.courses let i = index">
+                                <p class="sub-total" style="border-top:none;margin-bottom: 0rem;">{{item.name}}</p>
+                            </div>
+                              
+                              <h2 > Price<span id="Grandtotal" style="color: green;" >$&nbsp;{{subjectOffersSelect.net_value_after_discount}} </span></h2>
+                            
+                          </div>
+                          <!-- <div class="checkout-summary">
+                            <h1 class="Cart-Total">Cart Total</h1>
+                            <div *ngFor="let item of subjectSelect">
+                                <p class="sub-total">{{item.name}}<span style="width: 20%;" id="sub-total">{{item.price}} $ <button type="button" class="close"  (click)="addCard(item.id)">&times;</button></span> </p>
+
+                            </div>
+                            <h2 *ngIf="subjectSelect.length == 1">Total Price<span id="Grandtotal" >{{totalPriceShow}} &nbsp; $</span></h2>
+                            <div *ngIf="subjectSelect.length == 2">
+                            <h2 >Total Price <span id="Discount5%">{{totalPriceShow}} &nbsp; $</span></h2>
+                            <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 5 %</h3>
+                            </div>
+                            <div *ngIf="subjectSelect.length >= 3">
+                                
+                            <h2 >Total Price <span id="Discount10%">{{totalPriceShow}}  &nbsp; $</span></h2>
+                            <h3 style="color: red;margin-top: 5%;font-size: 24px;"> Discount 10 %</h3>
+                            </div>
+                        </div> -->
+
+                   
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn anotherSubject" id="closePaymentOFFERS" data-dismiss="modal" >Cancel</button>
+                      <button type="submit" class="btn btn-danger "style="background: #5fcfdf;border-color: #5fcfdf;" (click)="check_out()"  >Payment</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+          
+            </div>
+          
+          </form>

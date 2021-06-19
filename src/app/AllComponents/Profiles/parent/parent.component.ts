@@ -15,7 +15,7 @@ export class ParentComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById('footer').style.width= "83.333333%"
     document.getElementById('footer').style.marginLeft= "16.666667%"
-    if(localStorage.getItem("type")!= "parent" || localStorage.getItem("login")!= "true"|| localStorage.getItem("actviation")!= "1"   )
+    if(localStorage.getItem("type")!= "parent" || localStorage.getItem("login")!= "true"|| localStorage.getItem("actviation")!= "1" ||  localStorage.getItem('token') == null || localStorage.getItem('token') =="null"   )
     {
       this.router.navigate([''])
     }

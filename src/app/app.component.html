@@ -31,13 +31,13 @@
                   </div>
                 </li> -->
             </ul>
-            <button *ngIf="checkLog =='false' ||checkLog == null || checkLog =='null'" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
+            <button *ngIf="checkLog =='false' ||checkLog == null || checkLog =='null' ||tkn == null || tkn =='null' " aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " [routerLink]="['login']">
               Login
             </button>
-            <button *ngIf="checkLog =='false' || checkLog == null || checkLog =='null'" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
+            <button *ngIf="checkLog =='false' || checkLog == null || checkLog =='null' ||tkn == null || tkn =='null'" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" data-target="#ftco-nav"   data-toggle="collapse"  class="btn login my-2 my-sm-0 form-control " style="margin-left: 2%;" [routerLink]="['register']">
               Register
             </button>
-            <li class="nav-item dropdown" style="color: rgb(7, 12, 44);line-height: 10px;" *ngIf="checkLog =='true'">
+            <li class="nav-item dropdown" style="color: rgb(7, 12, 44);line-height: 10px;" *ngIf="checkLog =='true' && tkn != null && tkn !='null' ">
               <h5 class="nav-link nameuser dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{NameUser}}
               </h5>

@@ -97,12 +97,22 @@ export class CoursesComponent implements OnInit {
       
     // }
   ]
-  subjectSelect=[]
+  subjectPackageSelect = {"net_value":"",
+                          "name":"",
+                        "courses":[]}
+  subjectOffersSelect =  {"net_value_after_discount":"",
+  "name":"",
+"courses":[],
+"offer_precentage":""}
+
   totalPrice = 0 
   totalPriceShow = 0 
   @ViewChild('closebutton') closebutton;
   offers = []
   btnEnrollVisable = false
+  myStudents = []
+  idSelect
+  idStudent = "Choose  Your Child"
 
   constructor(private wowService: NgwWowService,private router:Router,private formBuilder: FormBuilder, private SerInstructor:InstructorService, private SerOffers:CoursesService,public toastr: ToastrManager) { }
 
@@ -116,79 +126,116 @@ export class CoursesComponent implements OnInit {
     {
       
       this.btnEnrollVisable = true
-      this.get_MyStudent()
+      
     }
     
   }
-  addCard(id)
+  // addCard(id)
+  // {
+  //   for (let i = 0; i < this.subjects.length; i++) {
+    
+  //     if(id == this.subjects[i].id )
+  //     {
+  //       if(this.subjects[i].visable == true)
+  //       {
+  //         this.subjects[i].visable = false
+  //         this.subjectSelect.push(this.subjects[i])
+
+  //       }
+  //       else
+  //       {
+  //         this.subjects[i].visable = true
+  //         for (let j = 0; j < this.subjectSelect.length; j++)
+  //          {
+  //            if(id == this.subjectSelect[j].id)
+  //            {
+  //             this.subjectSelect.splice(j, 1);
+
+  //            }
+            
+            
+  //          }
+
+  //       }
+   
+        
+  //     }
+    
+    
+      
+  //   }
+  //   this.totalPrice = 0
+  //   this.totalPriceShow = 0
+  //   for (let k = 0; k < this.subjectSelect.length; k++) {
+  //     this.totalPrice = this.totalPrice + this.subjectSelect[k].price
+  //     if(this.subjectSelect.length == 1)
+  //       {
+  //         this.totalPriceShow = this.totalPrice
+          
+  //       }
+  //     if(this.subjectSelect.length == 2)
+  //       {
+  //         this.totalPriceShow = this.totalPrice - (this.totalPrice * 5 / 100)
+
+  //       }
+  //       if(this.subjectSelect.length >= 3)
+  //       {
+  //         this.totalPriceShow  = this.totalPrice  - (this.totalPrice  * 10 / 100)
+
+  //       }
+
+      
+    
+      
+  //   }
+  //   if(this.subjectSelect.length==0)
+  //   {
+  //     this.closebutton.nativeElement.click();
+      
+  //   }
+ 
+ 
+
+  //   console.log(this.subjectSelect);
+    
+  // }
+  cardPackages(id)
   {
     for (let i = 0; i < this.subjects.length; i++) {
     
-      if(id == this.subjects[i].id )
-      {
-        if(this.subjects[i].visable == true)
-        {
-          this.subjects[i].visable = false
-          this.subjectSelect.push(this.subjects[i])
+          if(id == this.subjects[i].id )
+          {
+            this.subjectPackageSelect = this.subjects[i]
 
+          }
         }
-        else
-        {
-          this.subjects[i].visable = true
-          for (let j = 0; j < this.subjectSelect.length; j++)
-           {
-             if(id == this.subjectSelect[j].id)
-             {
-              this.subjectSelect.splice(j, 1);
+        this.idSelect = id
 
-             }
-            
-            
-           }
+    this.get_MyStudent()
 
-        }
-   
-        
-      }
-    
-    
-      
-    }
-    this.totalPrice = 0
-    this.totalPriceShow = 0
-    for (let k = 0; k < this.subjectSelect.length; k++) {
-      this.totalPrice = this.totalPrice + this.subjectSelect[k].price
-      if(this.subjectSelect.length == 1)
-        {
-          this.totalPriceShow = this.totalPrice
-          
-        }
-      if(this.subjectSelect.length == 2)
-        {
-          this.totalPriceShow = this.totalPrice - (this.totalPrice * 5 / 100)
-
-        }
-        if(this.subjectSelect.length >= 3)
-        {
-          this.totalPriceShow  = this.totalPrice  - (this.totalPrice  * 10 / 100)
-
-        }
-
-      
-    
-      
-    }
-    if(this.subjectSelect.length==0)
-    {
-      this.closebutton.nativeElement.click();
-      
-    }
- 
- 
-
-    console.log(this.subjectSelect);
-    
   }
+  cardOffers(id)
+  {
+    console.log(id)
+    for (let i = 0; i < this.offers.length; i++) {
+    
+          if(id == this.offers[i].id )
+          {
+            this.subjectOffersSelect = this.offers[i]
+            console.log(this.subjectOffersSelect )
+            
+
+          }
+        }
+        this.idSelect = id
+
+    this.get_MyStudent()
+
+  }
+ 
+ 
+
+
   get_Courses()
             {
            
@@ -233,6 +280,7 @@ export class CoursesComponent implements OnInit {
                 this.SerOffers.getMyStudent().subscribe(res=>
                   {
                     console.log(res.data)
+                    this.myStudents = res.data
                     
                   }
                   ,(err:any)=>
@@ -241,6 +289,42 @@ export class CoursesComponent implements OnInit {
                     this.toastr.warningToastr(err.error.message)
                   }
                   )
+            }
+            check_out()
+            {
+              if(this.idStudent=="Choose  Your Child")
+              {
+                this.toastr.warningToastr("Select Child")
+
+              }
+               if(this.idStudent!="Choose  Your Child")
+              {
+                var body = {
+                  "payment_ref":"4455",
+                  "package_id":this.idSelect,
+                  "student_id":this.idStudent
+                }
+                this.SerOffers.CheckOut(body).subscribe(res=>
+                  {
+                    console.log(res.data)
+                  this.toastr.successToastr("Done")
+                    document.getElementById("closePayment").click();
+                    document.getElementById("closePaymentOFFERS").click();
+                   
+                    this.idStudent = "Choose  Your Child"
+                    
+                    
+                  }
+                  ,(err:any)=>
+                  {
+                    console.log(err)
+                    this.toastr.warningToastr(err.error.message)
+                  }
+                  )
+
+              }
+            
+
             }
 
 }

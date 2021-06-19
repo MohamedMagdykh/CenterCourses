@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById('footer').style.width= "100%"
     document.getElementById('footer').style.marginLeft= "0%"
-    if( localStorage.getItem("login")== "true"  )
+    if( localStorage.getItem("login")== "true" &&  localStorage.getItem('token') != null && localStorage.getItem('token') !="null")
     {
       this.router.navigate([''])
     }
